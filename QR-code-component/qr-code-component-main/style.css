@@ -1,5 +1,5 @@
 body{
-    font-size:15px;
+    font-size: 0.7em;
     background-color:hsl(212, 45%, 89%);
     display: flex;
     justify-content: center;
@@ -7,9 +7,9 @@ body{
     
 }
 
-.main{
+main{
     background-color:white;
-    font-family: 'Outfit';
+    font-family: 'Outfit',Georgia, 'Times New Roman', Times, serif;
     align-self: center;
     display: inline-block;
     text-align: center;
