@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS Position Demo</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      height: 2000px; /* to allow scrolling */
+    }
+
+    /* Sticky Example */
+    .sticky {
+      position: sticky;
+      top: 0;
+      background: #ffeb3b;
+      padding: 10px;
+      font-weight: bold;
+      border-bottom: 2px solid #000;
+    }
+
+    /* Absolute Example */
+    .absolute-container {
+      position: relative;
+      height: 200px;
+      background: #e3f2fd;
+      margin: 20px;
+      border: 1px solid #90caf9;
+    }
+    .absolute {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: #2196f3;
+      color: white;
+      padding: 5px 10px;
+    }
+
+    /* Fixed Example */
+    .fixed {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #4caf50;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .content {
+      margin: 20px;
+      padding-top: 60px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sticky">I am sticky (sticks to the top on scroll)</div>
+
+  <div class="content">
+    <p>Scroll down to see how elements behave...</p>
+    <div class="absolute-container">
+      <div class="absolute">I am absolute (inside this box)</div>
+      <p>This is a relatively positioned box that contains an absolutely positioned element.</p>
+    </div>
+    <p>Keep scrolling...</p>
+    <p style="margin-top: 800px;">Almost there!</p>
+  </div>
+
+  <div class="fixed">I am fixed (always at bottom right)</div>
+
+</body>
+</html>
+
