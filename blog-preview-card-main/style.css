@@ -26,7 +26,6 @@ section{
     justify-content: center;
     align-items: left;
     flex-direction: column;
-    width: fit-content;
 }
 
 section .banner-image{
