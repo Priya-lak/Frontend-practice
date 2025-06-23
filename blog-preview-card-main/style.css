@@ -1,0 +1,66 @@
+:root{
+    --yellow:hsl(47, 88%, 63%);
+}
+
+@font-face {
+    font-family: 'Figtree';
+    src: url('./assets/fonts/Figtree-VariableFont_wght.ttf') format('truetype');
+}
+
+body{
+    background-color:  var(--yellow);
+    font-size: 1em;
+    font-family: 'Figtree','Times New Roman', Times, serif;
+
+}
+
+
+section{
+    background-color:  white;
+    padding: 1.5em;
+    margin:10%;
+    display: flex;
+    border: 0.15em solid black;
+    border-radius: 0.5em;
+    box-shadow: 1em 1em black;
+    justify-content: center;
+    align-items: left;
+    flex-direction: column;
+    width: fit-content;
+}
+
+section .banner-image{
+    border:2px solid black;
+    border-radius: 0.7em;
+    overflow: hidden;
+}
+
+section .banner-image img{
+    /* height:100%;
+    width:100%; */
+    height: auto;
+    object-fit: cover;
+    display: block;
+}
+
+/* section .instructor{
+    display: block;
+} */
+
+h1:hover{
+    color: var(--yellow);
+}
+
+select .instructor img{
+    display: inline;
+}
+
+button{
+    background-color: var(--yellow);
+    width: fit-content;
+    padding: 0.5em;
+    display: block;
+    font-weight: 800;
+    border: none;
+    border-radius: 0.2em;
+}
