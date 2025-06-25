@@ -18,7 +18,20 @@
     src: url('recipe-page-main/assets/fonts/outfit/Outfit-VariableFont_wght.ttf') format('truetype');
 }
 
-.body{
+body{
     font-size: 16px;
+    background-color: var(--stone-100);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Outfit','Times New Romn', Times, serif;
+}
+main{
+    background-color: var(--white);
+    padding: 2em;
+}
+
+h1,h2{
+    font-family: 'Young-Serif',Georgia, 'Times New Roman', Times, serif;
 }
 
