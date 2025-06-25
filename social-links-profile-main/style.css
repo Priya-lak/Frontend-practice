@@ -20,11 +20,12 @@ main{
     background-color: var(--card-gray);
     font-family: 'Inter','Times New Roman', Times, serif;
     display: flex;
+    row-gap:1em;
     flex-direction:column;
     align-items:center;
     color: var(--white);
-    width:25vh;
-    padding:0.5em;
+    width:auto;
+    padding:2em;
     border-radius: 5%;
 }
 
@@ -64,17 +65,19 @@ main{
     font-size:0.7em;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: flex-end;
 }
 .socials .link{
-    width: 15em;
-    height:2em;
+    width: 20em;
     background-color: var(--socials-gray);
     padding: 0.5em;
     margin-top: 0.5em;
     margin-bottom: 0.5em;
-    border-radius: 12%;
+    border-radius: 15%;
     display: flex;
     justify-content: center;
+}
+
+.socials .link:hover{
+    background-color: var(--green);
+    color: var(--bg-gray);
 }
