@@ -26,6 +26,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 180vh;
+  align-content: center;
   font-family: "Outfit", "Times New Romn", Times, serif;
   font-weight: 400;
   color: var(--stone-600);
