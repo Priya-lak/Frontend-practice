@@ -1,0 +1,116 @@
+:root {
+  --purple-light: hsl(260, 100%, 95%);
+  --purple-medium-light: hsl(264, 82%, 80%);
+  --purple-medium: hsl(263, 55%, 52%);
+  --white: hsl(0, 0%, 100%);
+  --grey-light: hsl(214, 17%, 92%);
+  --grey-medium-light: hsl(0, 0%, 81%);
+  --grey-medium: hsl(224, 10%, 45%);
+  --grey-medium-dark: hsl(217, 19%, 35%);
+  --dark-blue: hsl(219, 29%, 14%);
+  --black: hsl(0, 0%, 7%);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  /* font-size: 13px; */
+  font-family: "Barlow Semi Condensed", sans-serif;
+  
+}
+
+body {
+    max-height: 100vh;
+    display: grid;
+    grid-template: 1fr 1fr / 1fr 1fr 1fr 1fr;
+    padding: 10rem 15rem;
+    gap:2rem;
+    color: var(--white);
+    font-weight: 400;
+}
+
+
+.card {
+  padding: 3rem;
+  min-width: 250px;
+  border-radius: 2%;
+  box-shadow: 15px 20px 20px 20px var(--grey-light);
+  display: flex;
+  gap:1rem;
+  flex-direction: column;
+  /* overflow: hidden; */
+}
+.reviewer{
+    display: flex;
+    gap:1em;
+    align-items: flex-start;
+    overflow: visible;
+}
+.reviewer-avatar{
+    border-radius: 50%;
+    overflow: hidden;
+    display: inline-block;
+}
+.reviewer-info{
+    display: inline-block;
+}
+.reviewer-name{
+    font-weight: 600;
+}
+.reviewer-title{
+    font-size:90%
+}
+
+.review-title{
+    font-weight: 500;
+    font-size:1.2em
+}
+
+#purple {
+    background-color: var(--purple-medium);
+    background-image: url(images/bg-pattern-quotation.svg);
+    background-repeat: no-repeat;
+    background-position: 85% 0%;
+  grid-area: 1/1/2/3;
+}
+
+#light-gray {
+  background-color: var(--grey-medium-dark);
+  grid-area: 1 / 3 / 2 / 4;
+}
+
+#white-1 {
+  grid-area: 2 / 1 / 3 / 2;
+}
+
+#white-2 {
+  grid-area: 1 / 4/ 3 / 5;
+}
+
+#white-1,
+#white-2 {
+  background-color: var(--white);
+  color: var(--grey-medium-dark) !important;
+}
+
+#dark-gray {
+  background-color: var(--dark-blue);
+  grid-area: 2 / 2 / 3 / 4;
+}
+
+@media screen and (max-width:1024px) {
+    
+    body{
+        padding: 5rem 2rem;
+        display: flex;
+        flex-direction: column;
+        max-height: none;
+        /* justify-content: center; */
+        align-items: center;
+    }
+    .card{
+        flex-grow: 1;
+        max-width:500px;
+    }
+}
