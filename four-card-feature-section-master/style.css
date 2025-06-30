@@ -1,0 +1,122 @@
+:root {
+  --red: hsl(0, 78%, 62%);
+  --cyan: hsl(180, 62%, 55%);
+  --orange: hsl(34, 97%, 64%);
+  --blue: hsl(212, 86%, 64%);
+  --grey-dark: hsl(234, 12%, 34%);
+  --grey-light: hsl(212, 6%, 44%);
+  --grey-shadow:hsla(180, 9%, 27%, 0.208);
+  --white: hsl(0, 0%, 100%);
+  --main-font:'Poppins';
+  font-size: 15px;
+  
+}
+
+*{
+    color: var(--grey-dark);
+    font-family: var(--main-font), sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+ display:flex;
+   height: auto !important;
+  min-height: 100vh; /* Allow minimum viewport height but can grow */
+  max-height: none !important;
+  overflow: visible !important;
+
+ flex-direction: column;
+ flex-wrap: nowrap;
+ align-items: center;
+ background-color: white;
+ gap:5rem;
+ padding: 2rem;
+}
+
+.header{
+    flex:1;
+    flex-basis: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap:0.5rem;
+    /* height: 150px; */
+}
+
+.card-collection{
+    flex:1;
+    flex-basis: 500px;
+    /* height: 300px; */
+    display: grid;
+    gap:2rem;
+    grid-template:repeat(4,1fr) / repeat(3,1fr);
+    
+}
+
+.card{  
+    /* box-sizing: content-box; */
+    flex-basis: 50px;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 1;
+    padding: 2rem;
+    width:100%;
+    min-height: 15rem;
+    max-width: 25rem; 
+    overflow: hidden;
+    gap:1rem;
+    height: 250px;
+    border-radius: 0.5rem;
+    box-shadow:1px 20px 20px var(--grey-shadow); ; /*to do */
+}
+
+.card.a{
+    border-top: 5px solid var(--cyan);
+    grid-area: 2 / 1 / span 2/ span 1;
+}
+.card.b{
+    border-top: 5px solid var(--red);
+    grid-area: 1 / 2 / span 2/ span 1;
+}
+.card.c{
+    border-top: 5px solid var(--orange);
+    grid-area: 3 / 2 / span 2/ span 1;
+}
+.card.d{
+    border-top: 5px solid var(--blue);
+    grid-area: 2 / 3 / span 2/ span 1;
+}
+
+.card img{
+    margin-top: auto;
+
+    align-self: flex-end;
+}
+
+
+.header .main{
+    font-size: 2rem;
+    font-weight: 200;
+}
+
+.header .subtitle{
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.header .description{
+    font-size: 1rem;
+}
+
+@media screen and (max-width:750px) {
+    
+    .card-collection{
+        display: flex;
+        flex-direction: column;
+        /* height: auto; */
+    }
+}
