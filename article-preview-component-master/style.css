@@ -1,0 +1,29 @@
+:root {
+  --dark-grayish-blue: hsl(217, 19%, 35%);
+  --desaturated-dark-blue: hsl(214, 17%, 51%);
+  --grayish-blue: hsl(212, 23%, 69%);
+  --light-grayish-blue: hsl(210, 46%, 95%);
+  --main-font: 'Manrope'
+}
+
+html {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-size: 13px;
+  font-family:var(--main-font), Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+  height: auto;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    background-color: var(--light-grayish-blue);
+    /* height: 100vh; */
+}
+main{
+    border: 1px solid black;
+    background-color: white;
+    display: flex;
+}
