@@ -18,12 +18,92 @@ html {
 body{
     display: flex;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
     background-color: var(--light-grayish-blue);
-    /* height: 100vh; */
+    min-height: 100vh;
 }
 main{
-    border: 1px solid black;
+  border-radius: 5%;
     background-color: white;
     display: flex;
+    max-height:25rem;
+    width:70rem;
+    overflow: hidden;
 }
+
+h1{
+  line-height: 1.2;
+  color: var(--dark-grayish-blue);
+  font-size: 1.5;
+}
+.image-container{
+  overflow: hidden;
+}
+.image-container img{
+  object-fit: contain;
+  height: 100%;
+  width: auto;
+}
+.author-image{
+  border-radius: 50%;
+  height: 4rem;
+}
+.main-content{
+  padding: 2rem 3rem;
+}
+
+.main-content p{
+  color: var(--desaturated-dark-blue);
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.footer-details{
+  display: flex;
+  justify-content: space-between;
+}
+.footer-details .author{
+  display: flex;
+}
+
+.share-tooltip {
+  background-color: var(--dark-grayish-blue);
+  border-radius: 10%;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--light-grayish-blue);
+  padding: 1rem 1.5rem;
+  visibility: hidden;
+  position: absolute;
+  bottom: 150%; 
+  left: 50%;
+  z-index: 1;
+  transform: translateX(-50%); /* This centers the tooltip */
+  display: flex;
+  gap: 1rem;
+  justify-content: space-around;
+}
+
+.share-tooltip a:hover{
+  cursor: pointer;
+}
+
+.share-icon{
+ border-radius: 50%;
+ width:2.5rem;
+ height: 2.5rem;
+ background-color: var(--light-grayish-blue);
+ display: flex;
+ align-content: center;
+ justify-items: center;
+}
+
+.share-icon img{
+  height: 60%;
+  width: auto;
+}
+
+.share-icon:hover{
+  background-color: var(--dark-grayish-blue);
+}
+

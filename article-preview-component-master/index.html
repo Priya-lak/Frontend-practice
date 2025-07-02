@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- displays site properly based on user's device -->
-
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-
-  <title>Frontend Mentor | Article preview component</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./style.css">
-  <script src="main.js"></script>
+  
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- displays site properly based on user's device -->
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+    
+    <title>Frontend Mentor | Article preview component</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <script defer src="main.js"></script>
 </head>
 
 <body>
   <main>
     <div class="image-container">
-
+      
       <img src="./images/drawers.jpg" alt="image">
     </div>
     <div class="main-content">
@@ -34,7 +34,7 @@
       </p>
       <div class="footer-details">
         <div class="author">
-          <img src="./images/avatar-michelle.jpg" alt="avatar">
+          <div class="image-container author-image"><img src="./images/avatar-michelle.jpg" alt="avatar"></div>
           <div class="author-details">
             <p id="name">Michelle Appleton</p>
             <p id="published-date">28 Jun 2020</p>
@@ -43,9 +43,9 @@
         <div class="share">
           <div class="share-tooltip">
             Share
-            <img src="./images/icon-facebook.svg" alt="facebook" />
-            <img src="./images/icon-twitter.svg" alt="twitter" />
-            <img src="./images/icon-pinterest.svg" alt="pinterest" />
+            <a href="https://www.facebook.com/sharer/sharer.php?u=example.com"><img src="./images/icon-facebook.svg" alt="facebook" /></a>
+            <a href="https://x.com/intent/tweet?url=example.com"><img src="./images/icon-twitter.svg" alt="twitter" /></a>
+            <a href="https://pinterest.com/pin/create/button/?url=example.com"><img src="./images/icon-pinterest.svg" alt="pinterest" /></a>
           </div>
           <div class="share-icon"><img src="./images/icon-share.svg" alt=""></div>
         </div>
@@ -53,5 +53,4 @@
     </div>
   </main>
 </body>
-
 </html>
