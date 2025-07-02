@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>HTML Forms</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <nav>
+        <h3>Navigation</h3>
+    </nav>
+    <aside id="left">
+        <h3>Left content</h3>
+    </aside>
+    <main>
+        <form action="POST">
+            <h2>HTML forms</h2>
+            <label for="email" name="email">Email: </label>
+            <input type="email" id="email" required />
+            <label for="password" name="password">Password: </label>
+            <input type="password" id="password">
+            <input type="submit">
+        </form>
+        <table>
+            <thead>
+                <h2>HTML tables</h2>
+                <tr>
+                    <th colspan="3">
+                        <h5>Daily Routine</h5>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan="7">Timings and Tasks</td>
+                    <td>7.00</td>
+                    <td>wake up</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Breakfast</td>
+                </tr>
+                <tr>
+                    <td>9.30</td>
+                    <td>Come to office</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Lunch break</td>
+                </tr>
+                <tr>
+                    <td>7.00</td>
+                    <td>Get back home</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Dinner</td>
+                </tr>
+                <tr>
+                    <td>10.00</td>
+                    <td>Sleep</td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+    <aside id="right">
+        <h3>Right Content</h3>
+    </aside>
+    <footer>
+        <h3>Footer</h3>
+    </footer>
+</body>
+
+</html>
