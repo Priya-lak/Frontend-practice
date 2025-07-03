@@ -80,16 +80,20 @@ h1 {
   letter-spacing: 3px;
   color: var(--light-grayish-blue);
   padding: 1rem 1.5rem;
-  /* display: none; */
   visibility: hidden;
   position: absolute;
   bottom: 120%;
   left: 50%;
   z-index: 1;
-  transform: translateX(-50%); /* This centers the tooltip */
+  transform: translateX(-50%);
   display: flex;
   gap: 1rem;
   justify-content: space-around;
+  transition: all 0.3s;
+}
+
+.footer-details.active .share-tooltip {
+  visibility: visible;
 }
 
 .share {
@@ -157,9 +161,26 @@ h1 {
   }
 
 
-.share-tooltip{
-   width: 100%;
-   bottom: 0;
-}
-  
+.footer-details {
+    position: relative;
+    flex-direction: row;
+    padding: 0;
+    height: auto;
+  }
+  .footer-details.active .author {
+    display: none;
+  }
+  .share-tooltip {
+    width: 100%;
+    left: 50%;
+    bottom: -50%;
+    top: auto;
+    border-radius: 1rem;
+    /* transform: translateX(-50%); */
+    justify-content: flex-start;
+    padding: 1.2rem 2rem;
+    position: absolute;
+    z-index: 10;
+    font-size: 1.1rem;
+  }
 }

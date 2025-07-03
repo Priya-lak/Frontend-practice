@@ -1,26 +1,34 @@
-
 const shareIcon = document.querySelector(".share-icon");
-const shareTooltip= document.querySelector(".share-tooltip");
+const shareTooltip = document.querySelector(".share-tooltip");
+const footerDetails = document.querySelector(".footer-details");
 
-// shareIcon.addEventListener('click',(e)=>{
-//     console.log("Button clicked");
-//     shareTooltip.style.visibility="visible";
-// })
-
+function isMobile() {
+    return window.innerWidth <= 720;
+}
 
 shareIcon.addEventListener('click', (e) => {
-    e.stopPropagation()
-    console.log("Button clicked");
-    console.log(shareTooltip.style.visibility);
-    if (shareTooltip.style.visibility == "visible") 
-        { shareTooltip.style.visibility = "hidden"; }
-    else 
-        { shareTooltip.style.visibility = "visible"; }
-    
-})
+    e.stopPropagation();
+    if (isMobile()) {
+        footerDetails.classList.toggle('active');
+    } else {
+        if (shareTooltip.style.visibility === "visible") {
+            shareTooltip.style.visibility = "hidden";
+        } else {
+            shareTooltip.style.visibility = "visible";
+        }
+    }
+});
 
 document.addEventListener('click', () => {
-    
-    { shareTooltip.style.visibility = "hidden"; }
+    if (isMobile()) {
+        footerDetails.classList.remove('active');
+    } else {
+        shareTooltip.style.visibility = "hidden";
+    }
+});
 
-})
+// Prevent tooltip click from closing itself
+shareTooltip.addEventListener('click', (e) => {
+    e.stopPropagation();
+});
+
