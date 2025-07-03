@@ -2,6 +2,10 @@
 const shareIcon = document.querySelector(".share-icon");
 const shareTooltip= document.querySelector(".share-tooltip");
 
+// shareIcon.addEventListener('click',(e)=>{
+//     console.log("Button clicked");
+//     shareTooltip.style.visibility="visible";
+// })
 
 
 shareIcon.addEventListener('click', (e) => {

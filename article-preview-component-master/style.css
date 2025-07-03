@@ -3,7 +3,7 @@
   --desaturated-dark-blue: hsl(214, 17%, 51%);
   --grayish-blue: hsl(212, 23%, 69%);
   --light-grayish-blue: hsl(210, 46%, 95%);
-  --main-font: 'Manrope'
+  --main-font: "Manrope";
 }
 
 html {
@@ -11,59 +11,63 @@ html {
   margin: 0;
   box-sizing: border-box;
   font-size: 13px;
-  font-family:var(--main-font), Arial, Helvetica, sans-serif;
+  font-family: var(--main-font), Arial, Helvetica, sans-serif;
   line-height: 1.5;
   height: auto;
 }
-body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--light-grayish-blue);
-    min-height: 100vh;
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--light-grayish-blue);
+  min-height: 100vh;
 }
-main{
+main {
   border-radius: 5%;
-    background-color: white;
-    display: flex;
-    max-height:25rem;
-    width:70rem;
-    overflow: hidden;
+  background-color: white;
+  display: flex;
+  max-height: 25rem;
+  width: 70rem;
+  overflow: hidden;
 }
 
-h1{
+h1 {
   line-height: 1.2;
   color: var(--dark-grayish-blue);
   font-size: 1.5;
 }
-.image-container{
+.image-container {
   overflow: hidden;
 }
-.image-container img{
+.image-container img {
   object-fit: contain;
   height: 100%;
   width: auto;
 }
-.author-image{
+.author-image {
   border-radius: 50%;
   height: 4rem;
 }
-.main-content{
+.main-content {
+  flex-shrink: 1;
   padding: 2rem 3rem;
 }
 
-.main-content p{
+#main {
   color: var(--desaturated-dark-blue);
   font-size: 1.2rem;
   font-weight: 500;
 }
 
-.footer-details{
+.footer-details {
   display: flex;
-  justify-content: space-between;
+  gap: 10rem;
 }
-.footer-details .author{
+.footer-details .author {
+  flex-basis: auto;
   display: flex;
+  align-content: center;
+  /* gap:1rem; */
 }
 
 .share-tooltip {
@@ -75,7 +79,7 @@ h1{
   padding: 1rem 1.5rem;
   visibility: hidden;
   position: absolute;
-  bottom: 150%; 
+  bottom: 120%;
   left: 50%;
   z-index: 1;
   transform: translateX(-50%); /* This centers the tooltip */
@@ -84,26 +88,83 @@ h1{
   justify-content: space-around;
 }
 
-.share-tooltip a:hover{
+.share {
+  position: relative;
+}
+
+.share-tooltip a:hover {
   cursor: pointer;
 }
 
-.share-icon{
- border-radius: 50%;
- width:2.5rem;
- height: 2.5rem;
- background-color: var(--light-grayish-blue);
- display: flex;
- align-content: center;
- justify-items: center;
+.share-icon {
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: var(--light-grayish-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.share-icon img{
+.share-icon img {
   height: 60%;
   width: auto;
 }
 
-.share-icon:hover{
+.share-icon:hover {
   background-color: var(--dark-grayish-blue);
 }
 
+.author-details {
+  display: flex;
+  justify-content: center;
+  /* align-items: flex-start; */
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.author-details p {
+  margin: 0;
+}
+
+.author-details #name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--desaturated-dark-blue);
+}
+
+.author-details #published-date {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--desaturated-dark-blue);
+}
+
+@media screen and (max-width: 520px) {
+  main {
+    flex-direction: column;
+    max-height: max-content;
+    width: 100vw;
+  }
+  .image-container {
+    height: 50%;
+  }
+  .main-content {
+    height: 50%;
+  }
+  /* .footer-details {
+    display: none; /* hide the entire footer on small screens */
+  /* } */
+  .share-tooltip {
+    position: static; /* show tooltip in the normal flow instead of absolute */
+    visibility: visible; /* make it visible */
+    opacity: 1;
+    display: flex; /* ensure it's flex layout */
+    justify-content: center;
+    margin-top: 2rem; /* spacing from content above */
+    padding: 1rem 2rem;
+    background-color: var(--dark-grayish-blue);
+    border-radius: 1rem;
+    max-width: 90vw;
+    gap: 1rem;
+  }
+}
