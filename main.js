@@ -5,19 +5,26 @@ const url = `https://reqres.in/api/users?per_page=${limit}`;
 const reqHeaders = { "x-api-key": "reqres-free-v1" };
 
 const tableBody = document.getElementById("user-details");
-
-
-
 const controlBtn=document.querySelector(".controls");
+const loader = document.querySelector(".loader");
 
 
+const displayLoader= ()=>{
+    console.log("Loader",loader.style);
+    loader.style.display="inline-block";
+}
 
+const hideLoader= ()=>{
+    loader.style.display="none";
+}
 
-const fetchUserData = (url,page=1)=>{
+const fetchUserData = (url,page=1) => {
+    displayLoader();
     paginatedUrl = `${url}&&page=${page}`;
     console.log("Fetching from url",paginatedUrl);
     fetch(paginatedUrl, { headers: reqHeaders })
   .then((res) => {
+    hideLoader();
     if (res.ok) {
       return res.json();
     }
@@ -47,9 +54,10 @@ function populateData(resData) {
   if (resData.length<limit){
      max_reached=true;
   }
-  console.log("clearing previous data");
+  else{
+    max_reached=false;
+  }
   removeAllChildren(tableBody);
-  console.log("removed all children");
 
   for (const { first_name, last_name, avatar } of resData) {
     const dataRow = document.createElement("tr");
@@ -76,7 +84,6 @@ function populateData(resData) {
 }
 
 
-fetchUserData(url)
 
 controlBtn.addEventListener("click",(event)=>{
     console.log(event)
@@ -84,10 +91,12 @@ controlBtn.addEventListener("click",(event)=>{
         page++;
         fetchUserData(url,page);
     }
-    else if (event.target.attributes.id.value=="previous" && page>=1){
+    else if (event.target.attributes.id.value=="previous" && page>1){
         page--;
         fetchUserData(url,page);
     }
     
 }
 )
+
+fetchUserData(url)
