@@ -1,0 +1,41 @@
+*{
+    box-sizing: border-box;
+    margin:0;
+    padding: 0;
+}
+
+body{
+    display: flex;
+    justify-content:center;
+    background-color: #000000;
+    color: #F6F6F6;
+    padding: 1rem;
+    font-family: "Roboto",'Times New Roman', Times, serif;
+}
+
+table{
+    width: 60vw;
+    text-align: center;
+}
+
+thead{
+    background-color: #A2D5C6;
+    color: black;
+}
+table,tr,td,th{
+    border: solid 2px #F6F6F6;
+    border-collapse: collapse;
+    padding:0.5rem;
+}
+
+
+tbody tr:hover{
+    background-color:#CFFFE2;
+    color:#000000
+
+}
+
+div img{
+    height: 50px;
+    width: auto;
+}
