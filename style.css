@@ -14,6 +14,9 @@
 
 body{
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:2rem;
     justify-content:center;
     background-color: var(--black);
     color: var(--off-white);
@@ -43,7 +46,26 @@ tbody tr:hover{
 
 }
 
-div img{
+img{
     height: 50px;
     width: auto;
+}
+
+.controls{
+    display: flex;
+     width: 60vw;
+    justify-content: space-between;
+}
+
+.controls button{
+    background-color: black;
+    display:block;
+    border: 2px solid var(--off-white);
+    color: var(--off-white);
+    padding:1rem;
+}
+
+.controls button:hover{
+    background-color: var(--sea-green-active);
+    color: var(--black);
 }

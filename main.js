@@ -1,9 +1,22 @@
-const url = "https://reqres.in/api/users?page=1&&per_page=15";
+let page=1;
+let limit = 10;
+let max_reached= false;
+const url = `https://reqres.in/api/users?per_page=${limit}`;
 const reqHeaders = { "x-api-key": "reqres-free-v1" };
 
 const tableBody = document.getElementById("user-details");
 
-fetch(url, { headers: reqHeaders })
+
+
+const controlBtn=document.querySelector(".controls");
+
+
+
+
+const fetchUserData = (url,page=1)=>{
+    paginatedUrl = `${url}&&page=${page}`;
+    console.log("Fetching from url",paginatedUrl);
+    fetch(paginatedUrl, { headers: reqHeaders })
   .then((res) => {
     if (res.ok) {
       return res.json();
@@ -18,11 +31,26 @@ fetch(url, { headers: reqHeaders })
     console.error("There has been a problem with your fetch operation:", error);
   });
 
+}
+
+function removeAllChildren(parent) {
+        while (parent.firstChild) {
+            parent.removeChild(parent.firstChild);
+        }
+    }
+
 function populateData(resData) {
   if (!tableBody) {
     console.error("Table body element not found.");
     return;
   }
+  if (resData.length<limit){
+     max_reached=true;
+  }
+  console.log("clearing previous data");
+  removeAllChildren(tableBody);
+  console.log("removed all children");
+
   for (const { first_name, last_name, avatar } of resData) {
     const dataRow = document.createElement("tr");
 
@@ -33,13 +61,11 @@ function populateData(resData) {
     dataValueLastName.textContent  = last_name;
 
     const dataValueAvatar = document.createElement("td");
-    const avatarImageContainer = document.createElement("div");
     avatarImage = document.createElement("img");
     avatarImage.setAttribute("src", avatar);
     avatarImage.alt = "image";
 
-    avatarImageContainer.appendChild(avatarImage);
-    dataValueAvatar.appendChild(avatarImageContainer);
+    dataValueAvatar.appendChild(avatarImage);
     
     dataRow.appendChild(dataValueAvatar);
     dataRow.appendChild(dataValueFirstName);
@@ -48,3 +74,20 @@ function populateData(resData) {
     tableBody.appendChild(dataRow);
   }
 }
+
+
+fetchUserData(url)
+
+controlBtn.addEventListener("click",(event)=>{
+    console.log(event)
+    if (event.target.attributes.id.value=="next" && !max_reached){
+        page++;
+        fetchUserData(url,page);
+    }
+    else if (event.target.attributes.id.value=="previous" && page>=1){
+        page--;
+        fetchUserData(url,page);
+    }
+    
+}
+)
