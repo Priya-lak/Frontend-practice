@@ -1,6 +1,7 @@
 :root{
     --sea-green:#A2D5C6;
     --black:#000000;
+    --gray:#3535352c;
     --off-white:#F6F6F6;
     --sea-green-active:#CFFFE2;
 
@@ -24,6 +25,42 @@ body{
     font-family: "Roboto",'Times New Roman', Times, serif;
 }
 
+
+form{
+    display: flex;
+    /* display: none; */
+    flex-direction: column;
+    position: fixed;
+    gap:1rem;
+    right:-25%;
+    top:0;
+    width:25vw;
+    backdrop-filter: blur(10px);
+    /* background-color: gray; */
+    height: 100vh;
+    padding : 1.5rem;
+    border:2px solid var(--off-white);
+    font-weight: 800;
+    transition: 1s ease-out 0ms;
+    z-index: 1;
+}
+
+input{
+    background-color: var(--black);
+    border:2px solid var(--off-white);
+    border-radius: 10px;
+    height:2rem;
+    color: var(--off-white);
+}
+
+
+
+#add-user{
+    position:absolute;
+    right: 10vw;
+    top : 10%;
+}
+
 table{
     width: 60vw;
     text-align: center;
@@ -42,8 +79,10 @@ table,tr,td,th{
 
 tbody tr:hover{
     background-color:var(--sea-green-active);
-    color:var(--black)
-
+    color:var(--black);
+    transform: scale(1.05);
+    transition: 0.5s;
+    border: none;
 }
 
 img{
@@ -57,7 +96,7 @@ img{
     justify-content: space-between;
 }
 
-.controls button{
+button{
     background-color: black;
     display:block;
     border: 2px solid var(--off-white);
@@ -65,7 +104,7 @@ img{
     padding:1rem;
 }
 
-.controls button:hover{
+button:hover,input[type=submit]:hover{
     background-color: var(--sea-green-active);
     color: var(--black);
 }

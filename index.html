@@ -11,12 +11,26 @@
 </head>
 <body>
 
+    <button id="add-user">Add User</button>
+    <section id="user-form">
+        <form method="POST">
+            <label for="heading"></label>
+            <label for="first-name" >First Name</label>
+            <input type="text" id="first-name" required>
+            <label for="last-name">Last Name</label>
+            <input type="text" id="last-name" required>
+            <label for="picture">Picture</label>
+            <input type="text" id="picture" required>
+            <input type="submit">
+        </form>
+    </section>
     <table>
         <thead>
             <tr>
                 <th>Avatar</th>
                 <th>First name</th>
                 <th>Last name</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody id="user-details">
