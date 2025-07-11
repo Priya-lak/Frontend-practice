@@ -49,7 +49,6 @@ const removeAllChildren = (parent) => {
 
 const updateUserEvent = (userNode, firstName = "", lastName = "") => {
   console.log("updating user");
-  updateUserid = userNode.id;
   userNode.addEventListener("click", (event) => {
     event.stopPropagation();
     userForm.querySelector("label[for='heading']").textContent = "Update user";
@@ -57,7 +56,23 @@ const updateUserEvent = (userNode, firstName = "", lastName = "") => {
     userForm.querySelector("input[id='last-name']").value = lastName;
     userForm.style.right = "0";
     console.log(userNode.id, " id clicked!");
+    updateUserid = userNode.id;
   });
+};
+
+const deleteUserEvent = (userNode,deleteNode) => {
+  deleteNode.addEventListener("click",()=>{
+    let deleteUserid = userNode.id;
+    let deleteUrl = `${url}/${deleteUserid}`;
+    let success= apiCall(deleteUrl,"DELETE");
+    if (success){
+      window.alert("User deleted successfully");
+    }
+    else{
+      window.alert("There was an error while deleting user")
+    }
+  });
+  
 };
 
 const populateData = (resData) => {
@@ -121,7 +136,11 @@ const formValidation = () => {
     window.alert("Image field must contain a vaild image");
     return false;
   }
-  return { firstName: firstName, lastName: lastName, picture: picture };
+  return {
+    firstName: firstName.value.trim(),
+    lastName: lastName.value.trim(),
+    picture: picture.value.trim(),
+  };
 };
 
 controlBtn.addEventListener("click", (event) => {
@@ -148,31 +167,42 @@ addUserBtn.addEventListener("click", (event) => {
   updateUserid = null;
 });
 
-document.addEventListener("click", (event) => {
+document.addEventListener("click", () => {
   userForm.style.right = "-100%";
+  updateUserid = null;
 });
 
-const addOrUpdateUser = async (url, method, reqBody) => {
+
+
+const apiCall = async (url, method, reqBody = false) => {
   try {
-    const res = await fetch(url, {
+    let options = {
       method: method,
-      body: JSON.stringify(reqBody),
       headers: reqHeaders,
-    });
+    };
+    if (reqBody) {
+      options.body = JSON.stringify(reqBody);
+    }
+    const res = await fetch(url, options);
     if (res.ok) {
       const resJson = await res.json();
       console.log("Response received", resJson);
-      window.alert("Form submitted successfully");
+      
+      return true;
+      // Refresh the current page data to show updates
     } else {
       throw new Error("Network response was not ok");
     }
   } catch (error) {
     console.error("There has been a problem with your fetch operation:", error);
-    window.alert(
-      "There was an error during form submission, please try again!"
-    );
+    return false;
   }
 };
+
+const addOrUpdateUser=(url, method, reqBody = false)=>{
+  
+}
+
 
 userForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -183,10 +213,17 @@ userForm.addEventListener("submit", (event) => {
     if (updateUserid != null) {
       console.log("updating user", updateUserid);
       updateUrl = `${url}/${updateUserid}`;
-      addOrUpdateUser(updateUrl, "PUT", validatedFormData);
+      let success=apiCall(updateUrl, "PUT", validatedFormData);
       updateUserid = null;
     } else {
-      addOrUpdateUser(url, "POST", validatedFormData);
+      let success=apiCall(url, "POST", validatedFormData);
+    }
+    if (success){
+      window.alert("Form submitted successfully");
+      window.location.reload();
+    }
+    else{
+      window.alert("There was an error submitting the form. Please try again!")
     }
   }
 });
