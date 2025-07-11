@@ -47,13 +47,14 @@ const removeAllChildren = (parent) => {
   parent.innerHTML = "";
 };
 
-const updateUserEvent = (userNode, firstName = "", lastName = "") => {
+const updateUserEvent = (userNode, firstName = "", lastName = "",picture="") => {
   console.log("updating user");
   userNode.addEventListener("click", (event) => {
     event.stopPropagation();
     userForm.querySelector("label[for='heading']").textContent = "Update user";
     userForm.querySelector("input[id='first-name']").value = firstName;
     userForm.querySelector("input[id='last-name']").value = lastName;
+    userForm.querySelector("input[id='picture']").value = picture;
     userForm.style.right = "0";
     console.log(userNode.id, " id clicked!");
     updateUserid = userNode.id;
@@ -66,6 +67,7 @@ const deleteUserEvent = (userNode,deleteNode) => {
     let deleteUrl = `${url}/${deleteUserid}`;
     let success= apiCall(deleteUrl,"DELETE");
     if (success){
+      window.location.reload();
       window.alert("User deleted successfully");
     }
     else{
@@ -114,7 +116,8 @@ const populateData = (resData) => {
     dataRow.appendChild(deleteAction);
 
     tableBody.appendChild(dataRow);
-    updateUserEvent(dataRow, firstName, lastName);
+    updateUserEvent(dataRow, firstName, lastName,picture);
+    deleteUserEvent(dataRow,deleteAction);
   }
 };
 
@@ -204,19 +207,20 @@ const addOrUpdateUser=(url, method, reqBody = false)=>{
 }
 
 
-userForm.addEventListener("submit", (event) => {
+userForm.addEventListener("submit", async(event) => {
   event.preventDefault();
   console.log("Submitting form data");
   let validatedFormData = formValidation();
 
   if (validatedFormData) {
+    let success = false;
     if (updateUserid != null) {
       console.log("updating user", updateUserid);
       updateUrl = `${url}/${updateUserid}`;
-      let success=apiCall(updateUrl, "PUT", validatedFormData);
+      success= await apiCall(updateUrl, "PUT", validatedFormData);
       updateUserid = null;
     } else {
-      let success=apiCall(url, "POST", validatedFormData);
+      success=await apiCall(url, "POST", validatedFormData);
     }
     if (success){
       window.alert("Form submitted successfully");
