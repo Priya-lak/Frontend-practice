@@ -7,6 +7,8 @@ const reqHeaders = { "Content-Type": "application/json" };
 
 const tableBody = document.getElementById("user-details");
 const controlBtn = document.querySelector(".controls");
+const nextBtn = document.querySelector("#next");
+const prevBtn = document.querySelector("#previous");
 const loader = document.querySelector(".loader");
 const addUserBtn = document.querySelector("#add-user");
 const userForm = document.querySelector("form");
@@ -32,6 +34,14 @@ const fetchUserData = async (url, page = 1) => {
       console.log("Response received", resJson);
       hideLoader();
       populateData(resJson);
+      if (page==1){
+        // prevBtn.style.opacity=0.4;
+        prevBtn.disabled=true
+        //prevent hoverring effects
+      }
+      else{
+        prevBtn.disabled=false;
+      }
     } else {
       throw new Error("Network response was not ok");
     }
@@ -85,9 +95,14 @@ const populateData = (resData) => {
   console.log("response data", resData);
   if (resData.length < limit) {
     max_reached = true;
+    nextBtn.disabled=true;
+
   } else {
+    nextBtn.disabled=false;
     max_reached = false;
   }
+  
+
   removeAllChildren(tableBody);
   for (const { id, firstName, lastName, picture } of resData) {
     const dataRow = document.createElement("tr");
@@ -155,6 +170,7 @@ controlBtn.addEventListener("click", (event) => {
     page--;
     fetchUserData(url, page);
   }
+  
 });
 
 fetchUserData(url);
@@ -202,9 +218,7 @@ const apiCall = async (url, method, reqBody = false) => {
   }
 };
 
-const addOrUpdateUser=(url, method, reqBody = false)=>{
-  
-}
+
 
 
 userForm.addEventListener("submit", async(event) => {

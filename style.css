@@ -109,6 +109,16 @@ button:hover,input[type=submit]:hover{
     color: var(--black);
 }
 
+button:disabled,
+input[type=submit]:disabled:hover {
+    opacity: 0.4;
+}
+
+button:disabled:hover{
+    background-color: initial;
+    color: var(--off-white);
+}
+
 .loader {
   width: 48px;
   height: 48px;
