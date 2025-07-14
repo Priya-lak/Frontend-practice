@@ -15,7 +15,6 @@ const userForm = document.querySelector("form");
 const userFormSubmit = document.querySelector("form input[type='submit']");
 
 const displayLoader = () => {
-  console.log("Loader", loader.style);
   loader.style.display = "inline-block";
 };
 
@@ -31,7 +30,7 @@ const fetchUserData = async (url, page = 1) => {
     const res = await fetch(paginatedUrl, { headers: reqHeaders });
     if (res.ok) {
       const resJson = await res.json();
-      console.log("Response received", resJson);
+      console.log("Response received");
       hideLoader();
       populateData(resJson);
       if (page==1){
@@ -71,16 +70,17 @@ const updateUserEvent = (userNode, firstName = "", lastName = "",picture="") => 
   });
 };
 
-const deleteUserEvent = (userNode,deleteNode) => {
-  deleteNode.addEventListener("click",(e)=>{
+const deleteUserEvent =(userNode,deleteNode) => {
+  deleteNode.addEventListener("click",async (e)=>{
     e.stopPropagation();
     let deleteUserid = userNode.id;
     let deleteUrl = `${url}/${deleteUserid}`;
-    let success= apiCall(deleteUrl,"DELETE");
+    let success= await apiCall(deleteUrl,"DELETE");
     if (success){
       userNode.remove();
+      setTimeout(()=>{console.log('User deleted');
+      window.alert("User deleted successfully")},500);
 
-      window.alert("User deleted successfully");
     }
     else{
       window.alert("There was an error while deleting user")
@@ -94,7 +94,6 @@ const populateData = (resData) => {
     console.error("Table body element not found.");
     return;
   }
-  console.log("response data", resData);
   if (resData.length < limit) {
     max_reached = true;
     nextBtn.disabled=true;
@@ -164,7 +163,6 @@ const formValidation = () => {
 };
 
 controlBtn.addEventListener("click", (event) => {
-  console.log(event);
   if (event.target.id == "next" && !max_reached) {
     page++;
     fetchUserData(url, page);
@@ -207,7 +205,6 @@ const apiCall = async (url, method, reqBody = false) => {
     const res = await fetch(url, options);
     if (res.ok) {
       const resJson = await res.json();
-      console.log("Response received", resJson);
       
       return true;
       // Refresh the current page data to show updates
@@ -225,13 +222,11 @@ const apiCall = async (url, method, reqBody = false) => {
 
 userForm.addEventListener("submit", async(event) => {
   event.preventDefault();
-  console.log("Submitting form data");
   let validatedFormData = formValidation();
 
   if (validatedFormData) {
     let success = false;
     if (updateUserid != null) {
-      console.log("updating user", updateUserid);
       updateUrl = `${url}/${updateUserid}`;
       success= await apiCall(updateUrl, "PUT", validatedFormData);
       updateUserid = null;
