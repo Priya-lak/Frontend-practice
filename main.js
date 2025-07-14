@@ -72,12 +72,14 @@ const updateUserEvent = (userNode, firstName = "", lastName = "",picture="") => 
 };
 
 const deleteUserEvent = (userNode,deleteNode) => {
-  deleteNode.addEventListener("click",()=>{
+  deleteNode.addEventListener("click",(e)=>{
+    e.stopPropagation();
     let deleteUserid = userNode.id;
     let deleteUrl = `${url}/${deleteUserid}`;
     let success= apiCall(deleteUrl,"DELETE");
     if (success){
-      window.location.reload();
+      userNode.remove();
+
       window.alert("User deleted successfully");
     }
     else{
