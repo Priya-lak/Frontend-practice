@@ -15,7 +15,9 @@
 }
 
 .first-card {
-  align-content: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   width: auto;
   border: solid 1px blue;

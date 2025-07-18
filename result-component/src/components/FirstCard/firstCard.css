@@ -1,9 +1,40 @@
+.card-1{
+    display: flex;
+    flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap:1rem
+}
+
 .overall-score-board{
     border-radius: 50%;
     /* background-color:blue; */
         height: 10rem;
+        width: 10rem;
         align-content: center;
         text-align: center;
     background-image: linear-gradient(var(--violet-blue-circle),var(--persian-blue-circle));
     padding: 1rem;
+    color:var(--light-lavender);
+    font-weight: 300;
+}
+
+h2{
+    /* color: var(--white); */
+    font-weight: 500;
+}
+.score{
+    font-weight: 1000;
+    font-size: 3rem;
+    color: var(--white);
+}
+
+.review{
+    font-weight:600;
+    font-size:1.5rem
+}
+
+.review-details{
+    color:var(--light-lavender);
 }

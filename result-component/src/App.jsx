@@ -12,10 +12,10 @@ function App() {
   let total=0;
   let review,description;
   data.map((score)=> total=total+score.score);
-  let average= Math.ceil((total/data.length));
+  let average= Math.floor((total/data.length));
   if (average>60){
     review= "Great";
-    description = "Loren impiusm"
+    description = "You scored higher than 65% of the people who have taken these tests."
   }
   else{
     review="Needs Improvement";
