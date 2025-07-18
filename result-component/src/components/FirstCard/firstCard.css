@@ -1,0 +1,9 @@
+.overall-score-board{
+    border-radius: 50%;
+    /* background-color:blue; */
+        height: 10rem;
+        align-content: center;
+        text-align: center;
+    background-image: linear-gradient(var(--violet-blue-circle),var(--persian-blue-circle));
+    padding: 1rem;
+}

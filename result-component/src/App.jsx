@@ -1,7 +1,7 @@
 
 import './App.css';
-import FirstCard from './components/FirstCard';
-import SecondCard from './components/SecondCard';
+import FirstCard from './components/FirstCard/FirstCard';
+import SecondCard from './components/SecondCard/SecondCard';
 import data from '../data.json';
 
 
@@ -25,16 +25,15 @@ function App() {
 
 
   return (
-    <>
+    <main className='main-card'>
       <div className="first-card">
         <FirstCard overallScore={average} review={review} reviewDetails={description}/>
-
         </div>
         <div className="second-card">
           <SecondCard scores={data}/>
         </div>
-    </>
+    </main>
   )
 }
 
-export default App
+export default App;

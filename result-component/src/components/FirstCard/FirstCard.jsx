@@ -1,4 +1,5 @@
 import React from "react";
+import './firstCard.css';
 
 function FirstCard(props){
 return (
