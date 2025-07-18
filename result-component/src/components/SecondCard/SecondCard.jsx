@@ -1,4 +1,5 @@
 import React from "react";
+import './secondCard.css';
 
 function SecondCard(props) {
   return (
@@ -11,10 +12,12 @@ function SecondCard(props) {
             {
               console.log("score", score);
             }
-            return (<li id={score.category}>
+            return (<li className='score-item' id={score.category}>
               <img className="score-img"src={score.icon}/>
               <div className="score-name">{score.category}</div>
-              <div className="score-value">{score.score}</div>
+              <div className="score-value">
+              {score.score} <span style={{ fontWeight: "normal" }}>/ 100</span>
+            </div>
             </li>);
           })}
         </ul>

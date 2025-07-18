@@ -12,19 +12,27 @@
 .first-card {
   flex: 1;
   padding: 3rem;
-}
-
-.first-card {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+.first-card {
+  
   width: auto;
-  border: solid 1px blue;
   background-image: linear-gradient(
     var(--light-slate-blue-bg),
     var(--light-royal-blue-bg)
   );
   border-radius: 10%;
   color: var(--white);
+}
+
+@media screen and (max-width:520px) {
+  .main-card{
+    flex-direction: column;
+    width: 100vw;
+    border-radius: 0;
+  }
 }

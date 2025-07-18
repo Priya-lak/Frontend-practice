@@ -1,9 +1,9 @@
 :root {
   /* Primary Colors */
-  --light-red: hsl(0, 100%, 67%);
-  --orangey-yellow: hsl(39, 100%, 56%);
-  --green-teal: hsl(166, 100%, 37%);
-  --cobalt-blue: hsl(234, 85%, 45%);
+  --light-red: hsla(0, 100%, 67%,0.1);
+  --orangey-yellow: hsla(39, 100%, 56%,0.1);
+  --green-teal: hsla(166, 100%, 37%,0.1);
+  --cobalt-blue: hsl(234, 85%, 45%,0.1);
 
   /* Gradients */
   --light-slate-blue-bg: hsl(252, 100%, 67%);
