@@ -12,6 +12,7 @@
   height: auto;
   box-sizing: border-box;
   outline: none; /* Remove any outline */
+  border: none;
 }
 
 .img-container img {
