@@ -38,7 +38,6 @@ function Cart({ cartItems }) {
         <button className="order-confirm" onClick={() => {}}>
           Confirm Order
         </button>
-        {/* <Order  Confirmed totalAmount={cartTotal} cartItems={cartItems} /> */}
       </div>
     ) : (
       <img

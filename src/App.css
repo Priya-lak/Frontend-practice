@@ -8,12 +8,3 @@
 #app {
   display: flex;
 }
-
-Desserts {
-  /* flex: 2; */
-  background-color: aliceblue;
-  display: flex;
-  flex-direction: column;
-  /* display: grid;
-  grid-template:1fr 1fr 1fr */
-}

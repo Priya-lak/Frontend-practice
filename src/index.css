@@ -24,7 +24,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: var(--black);
-  background-color: var(--white);
+  background-color: var(--rose-50);
 }
 
 a {
