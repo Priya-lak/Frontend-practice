@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart, selectTotalAmount } from "./cartSlice";
 import OrderConfirmed from "../../components/order-confirmed-card/OrderConfirmedCard";
+import "./Cart.css";
 
 function Cart({ cartItems }) {
   const cartTotal = useSelector((state) => selectTotalAmount(state));
@@ -13,7 +14,9 @@ function Cart({ cartItems }) {
           <div className="item" key={item.name}>
             <span className="name">{item.name}</span>
             <div className="details">
-              {item.quantity}x @${item.price} ${item.amount}
+              <span className="quantity">{item.quantity}x</span>
+              <span className="price">@${item.price}</span>
+              <span className="amount">${item.amount}</span>
             </div>
             <button
               onClick={() => {
@@ -29,7 +32,8 @@ function Cart({ cartItems }) {
         ))}
 
         <div className="total">
-          Order Total <span>{cartTotal}</span>
+          <span>Order Total</span>
+          <span>${cartTotal}</span>
         </div>
         <button
           className="order-confirm"
@@ -50,8 +54,17 @@ function Cart({ cartItems }) {
 
   return (
     <div className="cart">
-      <h1>Your Cart</h1>
+      <h1 data-count={cartItems.length}>Your Cart</h1>
       {cartContent}
+      {cartItems.length > 0 && (
+        <div className="carbon-neutral">
+          <img
+            src="../../../assets/images/icon-carbon-neutral.svg"
+            alt="Carbon neutral"
+          />
+          <span>This is a carbon-neutral delivery</span>
+        </div>
+      )}
     </div>
   );
 }

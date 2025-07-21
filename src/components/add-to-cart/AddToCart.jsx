@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
 import {
   addToCart,
   decrementCartItem,
@@ -9,9 +8,8 @@ import {
 } from "../../features/cart/cartSlice";
 import "./AddToCart.css";
 
-function AddToCart({ selected, item }) {
+function AddToCart({ isSelected, setIsSelected, item }) {
   const dispatch = useDispatch();
-  const [isSelected, setIsSelected] = useState(selected);
   const cartItem = useSelector((state) => selectCartItem(state, item.name));
 
   if (!isSelected || !cartItem) {

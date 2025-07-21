@@ -1,22 +1,41 @@
-.main-card {
+.card {
   position: relative;
   border-radius: 1rem;
   overflow: hidden;
   margin-bottom: 1rem;
+  text-align: left;
 }
-
 .img-container {
   z-index: 1;
   width: 100%;
   height: auto;
+  box-sizing: border-box;
+  outline: none; /* Remove any outline */
 }
 
 .img-container img {
   width: 100%;
   height: auto;
   display: block;
+  border: none; /* Remove any border */
+  outline: none; /* Remove any outline */
 }
 
+.img-container.selected img {
+  width: 100%;
+  height: auto;
+  border: none;
+  outline: none;
+  transform: scale(1.05); /* Use transform instead of translate */
+  transition: transform 0.2s ease; /* Add smooth transition */
+}
+
+/* Add this to prevent any focus borders */
+.img-container:focus,
+.img-container img:focus {
+  outline: none;
+  border: none;
+}
 .dessert-details {
   display: flex;
   flex-direction: column;
@@ -25,7 +44,8 @@
 }
 
 .dessert-category {
-  color: var(--color-gray);
+  color: var(--color-red);
+  font-weight: 200;
   font-size: 0.875rem;
 }
 
@@ -35,7 +55,7 @@
 }
 
 .dessert-price {
-  color: var(--color-primary);
+  color: var(--color-red);
   font-weight: 700;
-  font-size: 1.125rem;
+  font-size: 1.5rem;
 }
