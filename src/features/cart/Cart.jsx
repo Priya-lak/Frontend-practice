@@ -1,9 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart, selectTotalAmount } from "./cartSlice";
+import OrderConfirmed from "../../components/order-confirmed-card/OrderConfirmedCard";
 
 function Cart({ cartItems }) {
   const cartTotal = useSelector((state) => selectTotalAmount(state));
   const dispatch = useDispatch();
+
   let cartContent =
     cartItems.length > 0 ? (
       <div className="cart-items">
@@ -29,6 +31,15 @@ function Cart({ cartItems }) {
         <div className="total">
           Order Total <span>{cartTotal}</span>
         </div>
+        <button
+          className="order-confirm"
+          onClick={() => {
+            console.log("order confirmed");
+          }}
+        >
+          Confirm Order
+        </button>
+        {/* <Order  Confirmed totalAmount={cartTotal} cartItems={cartItems} /> */}
       </div>
     ) : (
       <img
@@ -38,10 +49,10 @@ function Cart({ cartItems }) {
     );
 
   return (
-    <>
+    <div className="cart">
       <h1>Your Cart</h1>
       {cartContent}
-    </>
+    </div>
   );
 }
 export default Cart;

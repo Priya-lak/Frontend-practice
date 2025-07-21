@@ -1,0 +1,41 @@
+.main-card {
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.img-container {
+  z-index: 1;
+  width: 100%;
+  height: auto;
+}
+
+.img-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.dessert-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.dessert-category {
+  color: var(--color-gray);
+  font-size: 0.875rem;
+}
+
+.dessert-name {
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.dessert-price {
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 1.125rem;
+}

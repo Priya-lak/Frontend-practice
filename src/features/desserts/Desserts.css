@@ -1,0 +1,11 @@
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem; /* Add space between cards */
+  padding: 1rem;
+}
+
+.desserts {
+  display: flex;
+  flex-direction: column;
+}

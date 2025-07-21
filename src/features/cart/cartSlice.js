@@ -11,6 +11,9 @@ const cartSlice = createSlice({
     removeFromCart: (state, action) => {
       return state.filter((element) => element.name !== action.payload.name);
     },
+    clearCart: () => {
+      return initialCart;
+    },
     incrementCartItem: (state, action) => {
       const cartItem = state.find(
         (element) => element.name === action.payload.name
@@ -51,6 +54,7 @@ export const {
   removeFromCart,
   incrementCartItem,
   decrementCartItem,
+  clearCart,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
