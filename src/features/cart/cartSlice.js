@@ -9,9 +9,7 @@ const cartSlice = createSlice({
       state.push(action.payload);
     },
     removeFromCart: (state, action) => {
-      return state.filter((element) => {
-        element.name !== action.payload.name;
-      });
+      return state.filter((element) => element.name !== action.payload.name);
     },
     incrementCartItem: (state, action) => {
       const cartItem = state.find(

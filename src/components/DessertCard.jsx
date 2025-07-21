@@ -7,7 +7,7 @@ function DessertCard(props) {
     <>
       <div className="main-card">
         <div className="img-container">
-          <img src={image.mobile} alt={name} />
+          <img src={image.desktop} alt={name} />
         </div>
       </div>
 

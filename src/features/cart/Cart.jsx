@@ -1,4 +1,9 @@
+import { useDispatch, useSelector } from "react-redux";
+import { removeFromCart, selectTotalAmount } from "./cartSlice";
+
 function Cart({ cartItems }) {
+  const cartTotal = useSelector((state) => selectTotalAmount(state));
+  const dispatch = useDispatch();
   let cartContent =
     cartItems.length > 0 ? (
       <div className="cart-items">
@@ -6,12 +11,24 @@ function Cart({ cartItems }) {
           <div className="item" key={item.name}>
             <span className="name">{item.name}</span>
             <div className="details">
-              {item.quantity}
-              {item.price}
-              {item.amount}
+              {item.quantity}x @${item.price} ${item.amount}
             </div>
+            <button
+              onClick={() => {
+                dispatch(removeFromCart({ name: item.name }));
+              }}
+            >
+              <img
+                src="../../../assets/images/icon-remove-item.svg"
+                alt="remove"
+              />
+            </button>
           </div>
         ))}
+
+        <div className="total">
+          Order Total <span>{cartTotal}</span>
+        </div>
       </div>
     ) : (
       <img

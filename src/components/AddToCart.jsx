@@ -12,7 +12,7 @@ function AddToCart({ selected, item }) {
   const dispatch = useDispatch();
   const [isSelected, setIsSelected] = useState(selected);
   const cartItem = useSelector((state) => selectCartItem(state, item.name));
-  if (!isSelected) {
+  if (!isSelected || !cartItem) {
     return (
       <>
         <div
