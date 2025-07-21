@@ -1,18 +1,22 @@
 import AddToCart from "./AddToCart";
 
 function DessertCard(props) {
+  const { name, price, image, category } = props;
+
   return (
     <>
       <div className="main-card">
         <div className="img-container">
-          <img src={props.image.mobile} alt={props.name} />
+          <img src={image.mobile} alt={name} />
         </div>
       </div>
-      <AddToCart />
+
+      <AddToCart selected={false} item={{ name, price }} />
+
       <div className="dessert-details">
-        <div className="dessert-category">{props.category}</div>
-        <div className="dessert-name">{props.name}</div>
-        <div className="dessert-price">{props.price}</div>
+        <div className="dessert-category">{category}</div>
+        <div className="dessert-name">{name}</div>
+        <div className="dessert-price">{price}</div>
       </div>
     </>
   );

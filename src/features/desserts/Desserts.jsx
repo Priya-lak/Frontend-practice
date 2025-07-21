@@ -7,6 +7,7 @@ function Desserts() {
       <h1>Desserts</h1>
       {Data.map((dessert) => (
         <Card
+          key={dessert.name}
           name={dessert.name}
           category={dessert.category}
           price={dessert.price}

@@ -1,9 +1,23 @@
-function Cart(props) {
+function Cart({ cartItems }) {
   let cartContent =
-    props.cartItems.length > 0 ? (
-      <div className="cart-items"></div>
+    cartItems.length > 0 ? (
+      <div className="cart-items">
+        {cartItems.map((item) => (
+          <div className="item" key={item.name}>
+            <span className="name">{item.name}</span>
+            <div className="details">
+              {item.quantity}
+              {item.price}
+              {item.amount}
+            </div>
+          </div>
+        ))}
+      </div>
     ) : (
-      <img src="" />
+      <img
+        src="../../../assets/images/illustration-empty-cart.svg"
+        alt="Empty cart"
+      />
     );
 
   return (

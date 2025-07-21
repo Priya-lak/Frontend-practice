@@ -27,13 +27,21 @@ const cartSlice = createSlice({
         (element) => element.name === action.payload.name
       );
       if (cartItem) {
-        cartItem.quantity -= 1;
-        cartItem.amount = cartItem.price * cartItem.quantity;
+        if (cartItem.quantity > 1) {
+          // If quantity > 1, decrease it
+          cartItem.quantity -= 1;
+          cartItem.amount = cartItem.price * cartItem.quantity;
+        } else {
+          // If quantity = 1, remove item from cart
+          return state.filter((item) => item.name !== action.payload.name);
+        }
       }
     },
   },
 });
 
+export const selectCartItem = (state, name) =>
+  state.cart.find((item) => item.name === name);
 export const selectCart = (state) => state.cart;
 export const selectTotalItems = (state) =>
   state.cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -46,4 +54,5 @@ export const {
   incrementCartItem,
   decrementCartItem,
 } = cartSlice.actions;
+
 export default cartSlice.reducer;
