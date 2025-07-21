@@ -7,7 +7,7 @@ function DessertCard(props) {
   const [isSelected, setIsSelected] = useState(false);
   return (
     <div className="card">
-      <div className={`img-container ${isSelected ? "selected" : ""}`}>
+      <div className={`img-container ${isSelected ? "selected-img" : ""}`}>
         <img src={image.desktop} alt={name} />
       </div>
 
