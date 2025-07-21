@@ -8,7 +8,6 @@ function App() {
     <>
       <div id="app">
         <Desserts />
-        {console.log(useSelector((state) => state.cart))}
         <Cart cartItems={useSelector((state) => state.cart)}></Cart>
       </div>
     </>

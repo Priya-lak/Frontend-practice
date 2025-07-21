@@ -17,7 +17,6 @@ function AddToCart({ isSelected, setIsSelected, item }) {
       <div
         className="add-to-cart-btn"
         onClick={() => {
-          console.log("add to cart clicked!!");
           dispatch(
             addToCart({
               name: item.name,
@@ -42,7 +41,6 @@ function AddToCart({ isSelected, setIsSelected, item }) {
     <div className="selected add-to-cart-btn">
       <button
         onClick={() => {
-          console.log("decrement");
           if (cartItem.quantity == 1) {
             dispatch(removeFromCart({ name: item.name }));
             setIsSelected(false);
@@ -57,7 +55,6 @@ function AddToCart({ isSelected, setIsSelected, item }) {
       <span className="quantity">{cartItem.quantity}</span>
       <button
         onClick={() => {
-          console.log("increment");
           dispatch(incrementCartItem({ name: item.name }));
         }}
       >

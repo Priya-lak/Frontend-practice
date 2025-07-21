@@ -35,12 +35,7 @@ function Cart({ cartItems }) {
           <span>Order Total</span>
           <span>${cartTotal}</span>
         </div>
-        <button
-          className="order-confirm"
-          onClick={() => {
-            console.log("order confirmed");
-          }}
-        >
+        <button className="order-confirm" onClick={() => {}}>
           Confirm Order
         </button>
         {/* <Order  Confirmed totalAmount={cartTotal} cartItems={cartItems} /> */}
