@@ -94,7 +94,7 @@
 }
 
 .order-confirm:hover {
-  background-color: var(--color-red-dark);
+  transform: translateY(-5px);
 }
 
 /* Empty cart state */

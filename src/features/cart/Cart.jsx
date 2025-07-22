@@ -1,11 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart, selectTotalAmount } from "./cartSlice";
-import OrderConfirmed from "../../components/order-confirmed-card/OrderConfirmedCard";
+import OrderConfirmed from "../../components/order-confirmed/OrderConfirmed";
 import "./Cart.css";
+import { useState } from "react";
 
 function Cart({ cartItems }) {
   const cartTotal = useSelector((state) => selectTotalAmount(state));
   const dispatch = useDispatch();
+  const [isVisible, setIsVisible] = useState(false);
 
   let cartContent =
     cartItems.length > 0 ? (
@@ -35,9 +37,21 @@ function Cart({ cartItems }) {
           <span>Order Total</span>
           <span>${cartTotal}</span>
         </div>
-        <button className="order-confirm" onClick={() => {}}>
+        <button
+          className="order-confirm"
+          onClick={() => {
+            setIsVisible(true);
+          }}
+        >
           Confirm Order
         </button>
+        <OrderConfirmed
+          isOpen={isVisible}
+          onClose={() => setIsVisible(false)}
+          onConfirm={() => {}}
+          totalAmount={cartTotal}
+          cartItems={cartItems}
+        />
       </div>
     ) : (
       <img

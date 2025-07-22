@@ -13,11 +13,10 @@ function OrderConfirmed({
       <div className="order-confirmed-overlay">
         <DialogPanel className="order-confirmed-panel">
           <DialogTitle className="order-confirmed-title">
-            Confirm Your Order
+            Order Confirmed!
           </DialogTitle>
-
           <p className="order-confirmed-subtitle">
-            Please review your order details before confirming.
+            We hope you enjoy your food!
           </p>
 
           <div className="order-items-container">
@@ -35,16 +34,13 @@ function OrderConfirmed({
           </div>
 
           <div className="total-amount">
-            <span>Total:</span>
-            <span>${totalAmount}</span>
+            <span>Order Total:</span>
+            <span className="value">${totalAmount}</span>
           </div>
 
           <div className="action-buttons">
-            <button className="cancel-button" onClick={onClose}>
-              Cancel
-            </button>
             <button className="confirm-button" onClick={onConfirm}>
-              Confirm Order
+              Start New Order
             </button>
           </div>
         </DialogPanel>

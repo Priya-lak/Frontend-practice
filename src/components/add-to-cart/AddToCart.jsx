@@ -17,6 +17,7 @@ function AddToCart({ isSelected, setIsSelected, item }) {
       <div
         className="add-to-cart-btn"
         onClick={() => {
+          console.log("adding to cart");
           dispatch(
             addToCart({
               name: item.name,
