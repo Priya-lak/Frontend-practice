@@ -8,7 +8,12 @@ function DessertCard(props) {
   return (
     <div className="card">
       <div className={`img-container ${isSelected ? "selected-img" : ""}`}>
-        <img src={image.desktop} alt={name} />
+        <img
+          src={image.desktop}
+          srcSet={`${image.mobile} 480w, ${image.tablet} 768w, ${image.desktop} 1024w`}
+          sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, 1024px"
+          alt={name}
+        />
       </div>
 
       <AddToCart
