@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { removeFromCart, selectTotalAmount } from "./cartSlice";
+import { clearCart, removeFromCart, selectTotalAmount } from "./cartSlice";
 import OrderConfirmed from "../../components/order-confirmed/OrderConfirmed";
 import "./Cart.css";
 import { useState } from "react";
@@ -45,13 +45,6 @@ function Cart({ cartItems }) {
         >
           Confirm Order
         </button>
-        <OrderConfirmed
-          isOpen={isVisible}
-          onClose={() => setIsVisible(false)}
-          onConfirm={() => {}}
-          totalAmount={cartTotal}
-          cartItems={cartItems}
-        />
       </div>
     ) : (
       <img
@@ -61,19 +54,33 @@ function Cart({ cartItems }) {
     );
 
   return (
-    <div className="cart">
-      <h1 data-count={cartItems.length}>Your Cart</h1>
-      {cartContent}
-      {cartItems.length > 0 && (
-        <div className="carbon-neutral">
-          <img
-            src="../../../assets/images/icon-carbon-neutral.svg"
-            alt="Carbon neutral"
-          />
-          <span>This is a carbon-neutral delivery</span>
-        </div>
-      )}
-    </div>
+    <>
+      <div className="cart">
+        <h1 data-count={cartItems.length}>Your Cart</h1>
+        {cartContent}
+        {cartItems.length > 0 && (
+          <div className="carbon-neutral">
+            <img
+              src="../../../assets/images/icon-carbon-neutral.svg"
+              alt="Carbon neutral"
+            />
+            <span>This is a carbon-neutral delivery</span>
+          </div>
+        )}
+      </div>
+
+      {/* Order confirmation dialog outside the cart */}
+      <OrderConfirmed
+        isOpen={isVisible}
+        onClose={() => setIsVisible(false)}
+        onConfirm={() => {
+          dispatch(clearCart());
+          setIsVisible(false);
+        }}
+        totalAmount={cartTotal}
+        cartItems={cartItems}
+      />
+    </>
   );
 }
 export default Cart;
