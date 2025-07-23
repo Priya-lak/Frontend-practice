@@ -1,18 +1,25 @@
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
+import { useAuth } from "../../hooks/useAuth";
 
 export default function Login() {
+  const { login } = useAuth();
+  const navigateHome = useNavigate();
   const {
     register,
     handleSubmit,
     // watch,
     formState: { errors },
   } = useForm();
+
   return (
     <>
       <h1>Login</h1>
       <form
         onSubmit={handleSubmit((data) => {
           console.log(data);
+          navigateHome("/");
+          login();
         })}
       >
         <input

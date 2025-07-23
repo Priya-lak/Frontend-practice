@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { instance } from "../../axiosInstance/axiosInstance";
 import { useEffect, useState } from "react";
 
@@ -30,18 +30,20 @@ export default function Products() {
       <div className="products-list">
         {productData.map((product) => {
           return (
-            <div key={product.id} className="product-card">
-              <img
-                src={product.images[0]}
-                alt=""
-                height="300px"
-                width="300px"
-              />
-              <h2>{product.title}</h2>
-              <p>{product.description}</p>
-              <p>Price: ${product.price}</p>
-              <p>Rating: {product.rating}/5</p>
-            </div>
+            <Link to={`${product.id}`}>
+              <div key={product.id} className="product-card">
+                <img
+                  src={product.images[0]}
+                  alt=""
+                  height="300px"
+                  width="300px"
+                />
+                <h2>{product.title}</h2>
+                <p>{product.description}</p>
+                <p>Price: ${product.price}</p>
+                <p>Rating: {product.rating}/5</p>
+              </div>
+            </Link>
           );
         })}
       </div>
