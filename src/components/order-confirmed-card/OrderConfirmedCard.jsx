@@ -5,7 +5,7 @@ function OrderConfirmedCard({ cartItems, totalAmount }) {
     <div className="order-confirmed-card">
       <div className="success-icon">
         <img
-          src="../../../assets/images/icon-order-confirmed.svg"
+          src="/assets/images/icon-order-confirmed.svg"
           alt="Order confirmed"
         />
       </div>

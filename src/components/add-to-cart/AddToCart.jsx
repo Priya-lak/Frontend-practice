@@ -29,10 +29,7 @@ function AddToCart({ isSelected, setIsSelected, item }) {
           setIsSelected(true);
         }}
       >
-        <img
-          src="../../../assets/images/icon-add-to-cart.svg"
-          alt="Add to cart"
-        />
+        <img src="assets/images/icon-add-to-cart.svg" alt="Add to cart" />
         <span className="text">Add to cart</span>
       </div>
     );
@@ -49,7 +46,7 @@ function AddToCart({ isSelected, setIsSelected, item }) {
         }}
       >
         <img
-          src="../../../assets/images/icon-decrement-quantity.svg"
+          src="assets/images/icon-decrement-quantity.svg"
           alt="Decrease quantity"
         />
       </button>
@@ -60,7 +57,7 @@ function AddToCart({ isSelected, setIsSelected, item }) {
         }}
       >
         <img
-          src="../../../assets/images/icon-increment-quantity.svg"
+          src="assets/images/icon-increment-quantity.svg"
           alt="Increase quantity"
         />
       </button>

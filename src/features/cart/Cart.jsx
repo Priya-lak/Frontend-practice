@@ -25,10 +25,7 @@ function Cart({ cartItems }) {
                 dispatch(removeFromCart({ name: item.name }));
               }}
             >
-              <img
-                src="../../../assets/images/icon-remove-item.svg"
-                alt="remove"
-              />
+              <img src="/assets/images//icon-remove-item.svg" alt="remove" />
             </button>
           </div>
         ))}
@@ -47,10 +44,7 @@ function Cart({ cartItems }) {
         </button>
       </div>
     ) : (
-      <img
-        src="../../../assets/images/illustration-empty-cart.svg"
-        alt="Empty cart"
-      />
+      <img src="/assets/images/illustration-empty-cart.svg" alt="Empty cart" />
     );
 
   return (
@@ -61,7 +55,7 @@ function Cart({ cartItems }) {
         {cartItems.length > 0 && (
           <div className="carbon-neutral">
             <img
-              src="../../../assets/images/icon-carbon-neutral.svg"
+              src="/assets/images/icon-carbon-neutral.svg"
               alt="Carbon neutral"
             />
             <span>This is a carbon-neutral delivery</span>
