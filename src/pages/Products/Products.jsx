@@ -1,6 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchProducts } from "../../features/products/productSlice";
 
 export default function Products() {
@@ -10,10 +10,12 @@ export default function Products() {
     loading,
     error,
   } = useSelector((state) => state.products);
+  const [page, setPage] = useState(1);
+  const limit = 10;
 
   useEffect(() => {
-    dispatch(fetchProducts({ page: 1, limit: 10 })); // page 1, limit 10
-  }, [dispatch]);
+    dispatch(fetchProducts({ page: page, limit: limit })); // page 1, limit 10
+  }, [dispatch, page]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -42,6 +44,12 @@ export default function Products() {
           );
         })}
       </div>
+      {page > 1 ? (
+        <button onClick={() => setPage((page) => page - 1)}>Previous</button>
+      ) : (
+        <div></div>
+      )}
+      <button onClick={() => setPage((page) => page + 1)}>Next</button>
 
       <Outlet />
     </div>
