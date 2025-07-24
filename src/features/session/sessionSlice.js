@@ -1,11 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
+import Cookies from "js-cookie";
+
+const initialState = {
+  user: JSON.parse(Cookies.get("user") || "{}"),
+  isLoggedIn: Cookies.get("isLoggedIn") === "true",
+};
 
 export const sessionSlice = createSlice({
   name: "session",
-  initialState: {
-    user: {},
-    isLoggedIn: false,
-  },
+  initialState: initialState,
   reducers: {
     signIn: (state, action) => {
       state.user = action.payload;

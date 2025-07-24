@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { signIn } from "../../features/session/sessionSlice";
 import { Box, Button, Container, TextField, Typography } from "@mui/material";
 import { useDispatch } from "react-redux";
+import Cookies from "js-cookie";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -31,6 +32,9 @@ export default function Login() {
           component="form"
           onSubmit={handleSubmit((data) => {
             navigate("/products");
+            Cookies.set("user", JSON.stringify(data), { expires: 7 }); // 7 days expiry
+            Cookies.set("isLoggedIn", "true", { expires: 7 });
+
             dispatch(signIn(data));
           })}
           sx={{ mt: 1 }}

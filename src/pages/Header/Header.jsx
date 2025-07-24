@@ -6,6 +6,7 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
+import Cookies from "js-cookie";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
@@ -64,6 +65,8 @@ export default function Header() {
 
   const handleUserMenuClick = (item) => {
     if (item.action === "logout") {
+      Cookies.remove("user");
+      Cookies.remove("isLoggedIn");
       dispatch(logOut());
     } else if (item.path) {
       navigate(item.path);
@@ -105,7 +108,7 @@ export default function Header() {
               onClick={handleOpenNavMenu}
               color="inherit"
             >
-              {/* <MenuIcon /> */}
+              <MenuIcon />
             </IconButton>
             <Menu
               id="menu-appbar"

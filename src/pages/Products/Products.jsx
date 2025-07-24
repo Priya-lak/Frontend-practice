@@ -1,7 +1,10 @@
 import { Link, Outlet } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { fetchProducts } from "../../features/products/productSlice";
+import {
+  fetchProducts,
+  searchProduct,
+} from "../../features/products/productSlice";
 import AddToCart from "../../components/addToCart/addToCart";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -15,6 +18,8 @@ import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import Rating from "@mui/material/Rating";
 import Chip from "@mui/material/Chip";
+import TextField from "@mui/material/TextField";
+import SearchIcon from "@mui/icons-material/Search";
 
 export default function Products() {
   const dispatch = useDispatch();
@@ -34,17 +39,37 @@ export default function Products() {
   if (error) return <div>Error: {error}</div>;
   if (!productData.length) return <div>No products found</div>;
   return (
-    <Container maxWidth="lg" sx={{ py: 4 }}>
+    <Container maxWidth="lg" spacing={5}>
       <Typography
-        variant="h3"
+        variant="h4"
         component="h1"
         gutterBottom
         align="center"
         sx={{ mb: 4 }}
         color="text.primary"
       >
-        Products Page
+        Products
       </Typography>
+
+      <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+        <SearchIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
+        <TextField
+          id="search-input"
+          label="Search products"
+          variant="standard"
+          fullWidth
+          onKeyDown={(event) => {
+            if (event.key === "Enter") {
+              const searchTerm = event.target.value.trim();
+              if (searchTerm) {
+                console.log("Searching for:", searchTerm);
+                dispatch(searchProduct(searchTerm));
+              }
+            }
+          }}
+          sx={{ minWidth: 200 }}
+        />
+      </Box>
 
       <Grid container spacing={3} className="products-list">
         {productData.map((product) => (
