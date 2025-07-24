@@ -30,7 +30,6 @@ export default function Login() {
         <Box
           component="form"
           onSubmit={handleSubmit((data) => {
-            console.log(data);
             navigate("/products");
             dispatch(signIn(data));
           })}

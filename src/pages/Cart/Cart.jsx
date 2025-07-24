@@ -1,5 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { clearCart, fetchCartData } from "../../features/cart/cartSlice";
+import {
+  clearCart,
+  fetchCartData,
+  removeFromCart,
+} from "../../features/cart/cartSlice";
 import { useEffect } from "react";
 import {
   Container,
@@ -14,6 +18,7 @@ import {
   Paper,
   Stack,
 } from "@mui/material";
+import ClearIcon from "@mui/icons-material/Clear";
 import { ShoppingCart, ShoppingBag, Clear, Payment } from "@mui/icons-material";
 
 export default function Cart() {
@@ -28,7 +33,9 @@ export default function Cart() {
   const cartQuantity = useSelector((state) => state.cart.totalQuantity);
 
   console.log("cartItems", cartItems);
-
+  const handleRemoveItem = (productId) => {
+    dispatch(removeFromCart({ productId }));
+  };
   return (
     <Container maxWidth="md" sx={{ py: 4 }}>
       <Paper elevation={2} sx={{ p: 3 }}>
@@ -72,39 +79,77 @@ export default function Cart() {
               >
                 <CardContent>
                   <Grid container spacing={2} alignItems="center">
+                    {/* Product Title */}
                     <Grid item xs={12} sm={6}>
                       <Typography
                         variant="h6"
                         component="h3"
                         fontWeight="medium"
+                        sx={{
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                          display: "-webkit-box",
+                          WebkitLineClamp: 2,
+                          WebkitBoxOrient: "vertical",
+                        }}
                       >
                         {item.title}
                       </Typography>
                     </Grid>
-                    <Grid item xs={6} sm={3}>
-                      <Box sx={{ textAlign: { xs: "left", sm: "center" } }}>
-                        <Typography variant="body2" color="text.secondary">
-                          Quantity
+
+                    {/* Quantity */}
+                    <Grid item xs={4} sm={2}>
+                      <Box sx={{ textAlign: { xs: "center", sm: "center" } }}>
+                        <Typography
+                          variant="body2"
+                          color="text.secondary"
+                          gutterBottom
+                        >
+                          Qty
                         </Typography>
                         <Chip
                           label={item.quantity}
                           size="small"
                           color="secondary"
+                          variant="outlined"
                         />
                       </Box>
                     </Grid>
-                    <Grid item xs={6} sm={3}>
-                      <Box sx={{ textAlign: { xs: "left", sm: "right" } }}>
-                        <Typography variant="body2" color="text.secondary">
-                          Total Price
+
+                    {/* Total Price */}
+                    <Grid item xs={4} sm={2}>
+                      <Box sx={{ textAlign: "center" }}>
+                        <Typography
+                          variant="body2"
+                          color="text.secondary"
+                          gutterBottom
+                        >
+                          Total
                         </Typography>
                         <Typography
                           variant="h6"
                           color="primary.main"
                           fontWeight="bold"
                         >
-                          ${item.total?.toFixed(2) || "0.00"}
+                          ${(item.total || 0).toFixed(2)}
                         </Typography>
+                      </Box>
+                    </Grid>
+
+                    {/* Remove Button */}
+                    <Grid item xs={4} sm={2}>
+                      <Box sx={{ textAlign: "center" }}>
+                        <Button
+                          onClick={() => handleRemoveItem(item.id)}
+                          startIcon={<ClearIcon />}
+                          size="small"
+                          color="error"
+                          variant="outlined"
+                          aria-label={`Remove ${item.title} from cart`}
+                          sx={{ minWidth: "auto" }}
+                        >
+                          Remove
+                        </Button>
                       </Box>
                     </Grid>
                   </Grid>

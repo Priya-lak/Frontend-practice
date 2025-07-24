@@ -4,8 +4,6 @@ import { instance } from "../../axiosInstance/axiosInstance";
 const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
   async ({ page, limit }) => {
-    console.log("page", page);
-    console.log("limit", limit);
     let skip = (page - 1) * limit;
     const response = await instance.get(
       `/products?limit=${limit}&skip=${skip}`

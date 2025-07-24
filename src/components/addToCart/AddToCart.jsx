@@ -22,19 +22,19 @@ export default function AddToCart({
   sx = {},
 }) {
   const dispatch = useDispatch();
-  const redirect = useNavigate();
+  const navigate = useNavigate();
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const cartItems = useSelector(selectCartItems);
-  // console.log("cur")
-  const isInCart = cartItems.find((item) => item.productId === productId);
-  console.log(`item ${productId} in cart?`, isInCart);
+
+  // Calculate isInCart directly in render - no useEffect needed
+  const isInCart = cartItems.some((item) => item.id === productId);
+
   const handleClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
 
     if (!isLoggedIn) {
-      console.log("Not logged in");
-      return redirect("/login");
+      return navigate("/login");
     }
 
     if (isInCart) {
