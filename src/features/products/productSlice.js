@@ -3,11 +3,21 @@ import { instance } from "../../axiosInstance/axiosInstance";
 
 const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
-  async (page, limit) => {
+  async ({ page, limit }) => {
+    console.log("page", page);
+    console.log("limit", limit);
     let skip = (page - 1) * limit;
     const response = await instance.get(
       `/products?limit=${limit}&skip=${skip}`
     );
+    return response.data;
+  }
+);
+
+const fetchProductById = createAsyncThunk(
+  "products/fetchProductById",
+  async ({ productId }) => {
+    const response = await instance.get(`/products/${productId}`);
     return response.data;
   }
 );
@@ -33,6 +43,21 @@ const productSlice = createSlice({
   extraReducers: (builder) => {
     builder
       // Handle fetchProducts
+      .addCase(fetchProductById.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchProductById.fulfilled, (state, action) => {
+        state.loading = false;
+        state.items.push(action.payload);
+        state.total = action.payload.total;
+        state.skip = action.payload.skip;
+        state.limit = action.payload.limit;
+      })
+      .addCase(fetchProductById.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
       .addCase(fetchProducts.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -65,5 +90,9 @@ const productSlice = createSlice({
   },
 });
 
-export { fetchProducts, searchProduct };
+export const selectProduct = (state, productId) => {
+  return state.products.items.find((product) => product.id === productId);
+};
+
+export { fetchProducts, fetchProductById, searchProduct };
 export default productSlice.reducer;

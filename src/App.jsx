@@ -1,13 +1,13 @@
 import "./App.css";
-import Home from "./components/Home/Home";
-import Root from "./components/Root/Root";
-import About from "./components/About/About";
-import Products from "./components/Products/Products";
-import Product from "./components/Product/Product";
-import Profile from "./components/Profile/Profile";
-import Cart from "./components/Cart/Cart";
-import Login from "./components/Login/Login";
-import Register from "./components/Register/Register";
+import Home from "./pages/Home/Home";
+import Root from "./pages/Root/Root";
+import About from "./pages/About/About";
+import Products from "./pages/Products/Products";
+import Product from "./pages/Product/Product";
+import Profile from "./pages/Profile/Profile";
+import Cart from "./pages/Cart/Cart";
+import Login from "./pages/Login/Login";
+import Register from "./pages/Register/Register";
 import {
   Route,
   createBrowserRouter,

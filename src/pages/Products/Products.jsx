@@ -1,37 +1,32 @@
 import { Link, Outlet } from "react-router-dom";
-import { instance } from "../../axiosInstance/axiosInstance";
-import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { fetchProducts } from "../../features/products/productSlice";
 
 export default function Products() {
-  const [productData, setProductData] = useState([]);
+  const dispatch = useDispatch();
+  const {
+    items: productData,
+    loading,
+    error,
+  } = useSelector((state) => state.products);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await instance("products/");
-        setProductData(response.data.products);
-        // Remove this console.log as it will always show empty array
-        // console.log("products", productData);
-      } catch (err) {
-        console.error("error", err);
-      }
-    };
+    dispatch(fetchProducts({ page: 1, limit: 10 })); // page 1, limit 10
+  }, [dispatch]);
 
-    fetchData();
-  }, []);
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+  if (!productData.length) return <div>No products found</div>;
 
-  // Add this to see the updated state
-  useEffect(() => {
-    console.log("Updated products:", productData);
-  }, [productData]);
   return (
     <div>
       <h1>Products Page</h1>
       <div className="products-list">
         {productData.map((product) => {
           return (
-            <Link to={`${product.id}`}>
-              <div key={product.id} className="product-card">
+            <Link to={`${product.id}`} key={product.id}>
+              <div className="product-card">
                 <img
                   src={product.images[0]}
                   alt=""
