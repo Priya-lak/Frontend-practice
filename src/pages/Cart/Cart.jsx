@@ -34,8 +34,13 @@ export default function Cart() {
       <Paper elevation={2} sx={{ p: 3 }}>
         {/* Header */}
         <Box sx={{ display: "flex", alignItems: "center", mb: 3 }}>
-          <ShoppingCart sx={{ mr: 2, fontSize: 32, color: "primary.main" }} />
-          <Typography variant="h4" component="h1" fontWeight="bold">
+          <ShoppingCart sx={{ mr: 2, fontSize: 32, color: "info.main" }} />
+          <Typography
+            variant="h4"
+            component="h1"
+            fontWeight="bold"
+            color="text.primary"
+          >
             Shopping Cart
           </Typography>
         </Box>
@@ -113,7 +118,7 @@ export default function Cart() {
             sx={{
               p: 4,
               textAlign: "center",
-              backgroundColor: "grey.50",
+              backgroundColor: "background.paper",
               mb: 4,
             }}
           >

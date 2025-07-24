@@ -1,11 +1,12 @@
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth";
+import { signIn } from "../../features/session/sessionSlice";
 import { Box, Button, Container, TextField, Typography } from "@mui/material";
+import { useDispatch } from "react-redux";
 
 export default function Login() {
-  const { login } = useAuth();
-  const navigateHome = useNavigate();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -30,8 +31,8 @@ export default function Login() {
           component="form"
           onSubmit={handleSubmit((data) => {
             console.log(data);
-            navigateHome("/");
-            login();
+            navigate("/products");
+            dispatch(signIn(data));
           })}
           sx={{ mt: 1 }}
         >
@@ -65,7 +66,7 @@ export default function Login() {
             type="submit"
             fullWidth
             variant="contained"
-            color="primary"
+            color="info"
             sx={{ mt: 3, mb: 2 }}
           >
             Login

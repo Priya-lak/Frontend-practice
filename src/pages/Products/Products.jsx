@@ -24,7 +24,7 @@ export default function Products() {
     error,
   } = useSelector((state) => state.products);
   const [page, setPage] = useState(1);
-  const limit = 10;
+  const limit = 9;
 
   useEffect(() => {
     dispatch(fetchProducts({ page: page, limit: limit })); // page 1, limit 10
@@ -41,6 +41,7 @@ export default function Products() {
         gutterBottom
         align="center"
         sx={{ mb: 4 }}
+        color="text.primary"
       >
         Products Page
       </Typography>

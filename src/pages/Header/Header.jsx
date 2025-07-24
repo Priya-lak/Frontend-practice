@@ -13,10 +13,12 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-import { useAuth } from "../../hooks/useAuth";
+import { useDispatch, useSelector } from "react-redux";
+import { selectIsLoggedIn, logOut } from "../../features/session/sessionSlice";
 
 export default function Header() {
-  const { isLoggedIn, logout } = useAuth();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -24,7 +26,6 @@ export default function Header() {
   // Main navigation pages
   const pages = [
     { name: "Home", path: "/" },
-    { name: "About", path: "/about" },
     { name: "Products", path: "/products" },
     { name: "Cart", path: "/cart" },
   ];
@@ -63,7 +64,7 @@ export default function Header() {
 
   const handleUserMenuClick = (item) => {
     if (item.action === "logout") {
-      logout();
+      dispatch(logOut());
     } else if (item.path) {
       navigate(item.path);
     }
