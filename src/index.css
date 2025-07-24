@@ -1,0 +1,60 @@
+:root {
+  --primary-pink: #ffb5c2;
+  --primary-pink-light: #ffd6de;
+  --primary-pink-dark: #ff8fa3;
+  --accent-pink: #ff6b86;
+  --text-dark: #2c1810;
+  --text-light: #fff5f6;
+  --background: #fffafa;
+  --shadow: rgba(255, 181, 194, 0.2);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: var(--background);
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
+button {
+  background-color: var(--primary-pink);
+  color: var(--text-dark);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: var(--primary-pink-dark);
+}
+
+a {
+  color: var(--text-dark);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: var(--accent-pink);
+}
+
+input {
+  border: 1px solid var(--primary-pink-light);
+  padding: 0.5rem;
+  border-radius: 4px;
+  outline: none;
+}
+
+input:focus {
+  border-color: var(--primary-pink);
+  box-shadow: 0 0 0 2px var(--shadow);
+}
