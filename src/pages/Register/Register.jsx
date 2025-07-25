@@ -30,7 +30,6 @@ export default function Register() {
         <Box
           component="form"
           onSubmit={handleSubmit((data) => {
-            console.log(data);
             navigate("/");
             Cookies.set("user", JSON.stringify(data), { expires: 7 }); // 7 days expiry
             Cookies.set("isLoggedIn", "true", { expires: 7 });
