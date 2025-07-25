@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import {
@@ -23,23 +23,100 @@ import SearchIcon from "@mui/icons-material/Search";
 
 export default function Products() {
   const dispatch = useDispatch();
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const {
     items: productData,
     loading,
     error,
   } = useSelector((state) => state.products);
+
   const [page, setPage] = useState(1);
+  const [searchTerm, setSearchTerm] = useState(
+    searchParams.get("search") || ""
+  );
   const limit = 9;
 
   useEffect(() => {
-    dispatch(fetchProducts({ page: page, limit: limit })); // page 1, limit 10
-  }, [dispatch, page]);
+    const urlSearchTerm = searchParams.get("search");
+    const urlPage = searchParams.get("page");
+
+    if (urlPage) {
+      setPage(parseInt(urlPage) || 1);
+    }
+
+    if (urlSearchTerm) {
+      setSearchTerm(urlSearchTerm);
+      dispatch(searchProduct(urlSearchTerm));
+    } else {
+      dispatch(fetchProducts({ page: page, limit: limit }));
+    }
+  }, [dispatch, searchParams, page]);
+
+  useEffect(() => {
+    // Update URL when page changes (for non-search scenarios)
+    if (!searchParams.get("search")) {
+      const newParams = new URLSearchParams(searchParams);
+      if (page > 1) {
+        newParams.set("page", page.toString());
+      } else {
+        newParams.delete("page");
+      }
+      setSearchParams(newParams, { replace: true });
+      dispatch(fetchProducts({ page: page, limit: limit }));
+    }
+  }, [page, searchParams, setSearchParams, dispatch]);
+
+  const handleSearch = (event) => {
+    if (event.key === "Enter") {
+      const searchValue = event.target.value.trim();
+      const newParams = new URLSearchParams();
+
+      if (searchValue) {
+        newParams.set("search", searchValue);
+        setSearchParams(newParams);
+        dispatch(searchProduct(searchValue));
+      } else {
+        // Clear search and go back to products
+        setSearchParams({});
+        setPage(1);
+      }
+    }
+  };
+
+  const handleGoBack = () => {
+    // Clear all search params and reset to products page
+    setSearchParams({});
+    setSearchTerm("");
+    setPage(1);
+  };
+
+  const handlePageChange = (newPage) => {
+    setPage(newPage);
+  };
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
-  if (!productData.length) return <div>No products found</div>;
+  if (!productData.length)
+    return (
+      <Container maxWidth="md">
+        <Typography
+          variant="h6"
+          component="h1"
+          gutterBottom
+          align="center"
+          sx={{ mb: 4 }}
+          color="text.primary"
+        >
+          No products found
+        </Typography>
+
+        <Button onClick={handleGoBack}>Go Back</Button>
+      </Container>
+    );
+
   return (
-    <Container maxWidth="lg" spacing={5}>
+    <Container maxWidth="lg">
       <Typography
         variant="h4"
         component="h1"
@@ -51,24 +128,31 @@ export default function Products() {
         Products
       </Typography>
 
-      <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+      <Box sx={{ display: "flex", alignItems: "flex-end", margin: "50px 0px" }}>
         <SearchIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
         <TextField
           id="search-input"
           label="Search products"
           variant="standard"
           fullWidth
-          onKeyDown={(event) => {
-            if (event.key === "Enter") {
-              const searchTerm = event.target.value.trim();
-              if (searchTerm) {
-                dispatch(searchProduct(searchTerm));
-              }
-            }
-          }}
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          onKeyDown={handleSearch}
           sx={{ minWidth: 200 }}
         />
       </Box>
+
+      {/* Show search results info */}
+      {searchParams.get("search") && (
+        <Box sx={{ mb: 2 }}>
+          <Typography variant="body2" color="text.secondary">
+            Search results for: "{searchParams.get("search")}"
+          </Typography>
+          <Button size="small" onClick={handleGoBack} sx={{ mt: 1 }}>
+            Clear Search
+          </Button>
+        </Box>
+      )}
 
       <Grid container spacing={3} className="products-list">
         {productData.map((product) => (
@@ -189,38 +273,40 @@ export default function Products() {
         ))}
       </Grid>
 
-      {/* Pagination Controls */}
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          gap: 2,
-          mt: 4,
-        }}
-      >
-        {page > 1 && (
+      {/* Pagination Controls - Only show for non-search results */}
+      {!searchParams.get("search") && (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: 2,
+            mt: 4,
+          }}
+        >
+          {page > 1 && (
+            <Button
+              variant="outlined"
+              onClick={() => handlePageChange(page - 1)}
+              sx={{ minWidth: 100 }}
+            >
+              Previous
+            </Button>
+          )}
+
+          <Typography variant="body1" sx={{ mx: 2 }}>
+            Page {page}
+          </Typography>
+
           <Button
             variant="outlined"
-            onClick={() => setPage((page) => page - 1)}
+            onClick={() => handlePageChange(page + 1)}
             sx={{ minWidth: 100 }}
           >
-            Previous
+            Next
           </Button>
-        )}
-
-        <Typography variant="body1" sx={{ mx: 2 }}>
-          Page {page}
-        </Typography>
-
-        <Button
-          variant="outlined"
-          onClick={() => setPage((page) => page + 1)}
-          sx={{ minWidth: 100 }}
-        >
-          Next
-        </Button>
-      </Box>
+        </Box>
+      )}
 
       <Outlet />
     </Container>
