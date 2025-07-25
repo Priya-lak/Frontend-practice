@@ -6,6 +6,7 @@ import {
   searchProduct,
 } from "../../features/products/productSlice";
 import AddToCart from "../../components/addToCart/addToCart";
+import CircularProgress from "@mui/material/CircularProgress";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -95,7 +96,21 @@ export default function Products() {
     setPage(newPage);
   };
 
-  if (loading) return <div>Loading...</div>;
+  if (loading)
+    return (
+      <Container
+        maxWidth="lg"
+        sx={{ display: "flex", justifyContent: "center", py: 8 }}
+      >
+        <Box textAlign="center">
+          <CircularProgress size={60} />
+          <Typography variant="h6" sx={{ mt: 2 }}>
+            Loading product details...
+          </Typography>
+        </Box>
+      </Container>
+    );
+
   if (error) return <div>Error: {error}</div>;
   if (!productData.length)
     return (
