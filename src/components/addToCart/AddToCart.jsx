@@ -26,7 +26,6 @@ export default function AddToCart({
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const cartItems = useSelector(selectCartItems);
 
-  // Calculate isInCart directly in render - no useEffect needed
   const isInCart = cartItems.some((item) => item.id === productId);
 
   const handleClick = (e) => {
@@ -45,22 +44,24 @@ export default function AddToCart({
   };
 
   return (
-    <Button
-      size={size}
-      variant={variant}
-      color={isInCart ? "error" : color}
-      fullWidth={fullWidth}
-      disabled={disabled}
-      onClick={handleClick}
-      startIcon={
-        isInCart ? <RemoveShoppingCartIcon /> : <AddShoppingCartIcon />
-      }
-      sx={{
-        fontWeight: "bold",
-        ...sx,
-      }}
-    >
-      {isInCart ? "Remove from Cart" : "Add to Cart"}
-    </Button>
+    <div>
+      <Button
+        size={size}
+        variant={variant}
+        color={isInCart ? "error" : color}
+        fullWidth={fullWidth}
+        disabled={disabled}
+        onClick={handleClick}
+        startIcon={
+          isInCart ? <RemoveShoppingCartIcon /> : <AddShoppingCartIcon />
+        }
+        sx={{
+          fontWeight: "bold",
+          ...sx,
+        }}
+      >
+        {isInCart ? "Remove from Cart" : "Add to Cart"}
+      </Button>
+    </div>
   );
 }

@@ -3,6 +3,7 @@ import {
   clearCart,
   fetchCartData,
   removeFromCart,
+  updateQuantity,
 } from "../../features/cart/cartSlice";
 import { useEffect } from "react";
 import {
@@ -17,8 +18,14 @@ import {
   Grid,
   Paper,
   Stack,
+  ButtonGroup,
+  IconButton,
 } from "@mui/material";
-import ClearIcon from "@mui/icons-material/Clear";
+import {
+  Add as AddIcon,
+  Remove as RemoveIcon,
+  Clear as ClearIcon,
+} from "@mui/icons-material";
 import { ShoppingCart, ShoppingBag, Clear, Payment } from "@mui/icons-material";
 
 export default function Cart() {
@@ -35,6 +42,14 @@ export default function Cart() {
   const handleRemoveItem = (productId) => {
     dispatch(removeFromCart({ productId }));
   };
+
+  const handleQuantityDecrease = ({ id, quantity }) => {
+    dispatch(updateQuantity({ productId: id, quantity: quantity - 1 }));
+  };
+  const handleQuantityIncrease = ({ id, quantity }) => {
+    dispatch(updateQuantity({ productId: id, quantity: quantity + 1 }));
+  };
+
   return (
     <Container maxWidth="md" sx={{ py: 4 }}>
       <Paper elevation={2} sx={{ p: 3 }}>
@@ -98,20 +113,37 @@ export default function Cart() {
 
                     {/* Quantity */}
                     <Grid item xs={4} sm={2}>
-                      <Box sx={{ textAlign: { xs: "center", sm: "center" } }}>
-                        <Typography
-                          variant="body2"
-                          color="text.secondary"
-                          gutterBottom
-                        >
-                          Qty
-                        </Typography>
-                        <Chip
-                          label={item.quantity}
-                          size="small"
-                          color="secondary"
+                      <Box
+                        sx={{ display: "flex", alignItems: "center", gap: 2 }}
+                      >
+                        <ButtonGroup
                           variant="outlined"
-                        />
+                          aria-label="quantity selector"
+                        >
+                          <IconButton
+                            onClick={() => handleQuantityDecrease(item)}
+                            disabled={item.quantity <= 1}
+                            size="small"
+                          >
+                            <RemoveIcon />
+                          </IconButton>
+                          <Button
+                            disabled
+                            sx={{ minWidth: 60, fontWeight: "bold" }}
+                          >
+                            {item.quantity}
+                          </Button>
+                          <IconButton
+                            onClick={() => handleQuantityIncrease(item)}
+                            disabled={item.quantity >= item.stock}
+                            size="small"
+                          >
+                            <AddIcon />
+                          </IconButton>
+                        </ButtonGroup>
+                        <Typography variant="body2" color="text.secondary">
+                          Max: {item.stock}
+                        </Typography>
                       </Box>
                     </Grid>
 
