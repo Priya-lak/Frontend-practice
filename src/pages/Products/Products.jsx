@@ -62,7 +62,6 @@ export default function Products() {
             if (event.key === "Enter") {
               const searchTerm = event.target.value.trim();
               if (searchTerm) {
-                console.log("Searching for:", searchTerm);
                 dispatch(searchProduct(searchTerm));
               }
             }

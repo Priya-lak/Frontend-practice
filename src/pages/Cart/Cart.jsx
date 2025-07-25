@@ -32,7 +32,6 @@ export default function Cart() {
   const cartTotal = useSelector((state) => state.cart.totalAmount);
   const cartQuantity = useSelector((state) => state.cart.totalQuantity);
 
-  console.log("cartItems", cartItems);
   const handleRemoveItem = (productId) => {
     dispatch(removeFromCart({ productId }));
   };

@@ -1,11 +1,13 @@
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth";
 import { Box, Button, Container, TextField, Typography } from "@mui/material";
+import Cookies from "js-cookie";
+import { useDispatch } from "react-redux";
+import { signIn } from "../../features/session/sessionSlice";
 
 export default function Register() {
-  const { login } = useAuth();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -30,7 +32,10 @@ export default function Register() {
           onSubmit={handleSubmit((data) => {
             console.log(data);
             navigate("/");
-            login();
+            Cookies.set("user", JSON.stringify(data), { expires: 7 }); // 7 days expiry
+            Cookies.set("isLoggedIn", "true", { expires: 7 });
+
+            dispatch(signIn(data));
           })}
           sx={{ mt: 1 }}
         >

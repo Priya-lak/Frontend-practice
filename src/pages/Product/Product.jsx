@@ -48,7 +48,6 @@ export default function Product() {
 
   useEffect(() => {
     if (!productDetails) {
-      console.log("api call for product");
       dispatch(fetchProductById({ productId }));
     }
   }, [dispatch, productId, productDetails]);
@@ -131,7 +130,6 @@ export default function Product() {
             {/* Navigation buttons - only show if multiple images */}
             {productDetails.images && productDetails.images.length > 1 && (
               <>
-                {console.log("multiple images")}
                 <IconButton
                   onClick={handlePreviousImage}
                   sx={{
