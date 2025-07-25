@@ -40,7 +40,6 @@ export default function Register() {
         >
           <TextField
             margin="normal"
-            required
             fullWidth
             id="firstName"
             label="First Name"
@@ -54,7 +53,6 @@ export default function Register() {
           />
           <TextField
             margin="normal"
-            required
             fullWidth
             id="lastName"
             label="Last Name"
@@ -67,7 +65,6 @@ export default function Register() {
           />
           <TextField
             margin="normal"
-            required
             fullWidth
             id="email"
             label="Email Address"
@@ -79,7 +76,6 @@ export default function Register() {
           />
           <TextField
             margin="normal"
-            required
             fullWidth
             id="password"
             label="Password"

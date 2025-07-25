@@ -39,22 +39,6 @@ export default function Products() {
   const limit = 9;
 
   useEffect(() => {
-    const urlSearchTerm = searchParams.get("search");
-    const urlPage = searchParams.get("page");
-
-    if (urlPage) {
-      setPage(parseInt(urlPage) || 1);
-    }
-
-    if (urlSearchTerm) {
-      setSearchTerm(urlSearchTerm);
-      dispatch(searchProduct(urlSearchTerm));
-    } else {
-      dispatch(fetchProducts({ page: page, limit: limit }));
-    }
-  }, [dispatch, searchParams, page]);
-
-  useEffect(() => {
     // Update URL when page changes (for non-search scenarios)
     if (!searchParams.get("search")) {
       const newParams = new URLSearchParams(searchParams);

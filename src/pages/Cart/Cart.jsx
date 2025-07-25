@@ -141,9 +141,6 @@ export default function Cart() {
                             <AddIcon />
                           </IconButton>
                         </ButtonGroup>
-                        <Typography variant="body2" color="text.secondary">
-                          Max: {item.stock}
-                        </Typography>
                       </Box>
                     </Grid>
 

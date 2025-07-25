@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { instance } from "../../axiosInstance/axiosInstance";
+import { revertAll } from "../actions";
 
 const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
@@ -28,16 +29,18 @@ const searchProduct = createAsyncThunk(
   }
 );
 
+const initialState = {
+  items: [],
+  loading: false,
+  error: null,
+  total: 0,
+  skip: 0,
+  limit: 10,
+};
+
 const productSlice = createSlice({
   name: "products",
-  initialState: {
-    items: [],
-    loading: false,
-    error: null,
-    total: 0,
-    skip: 0,
-    limit: 10,
-  },
+  initialState: initialState,
   extraReducers: (builder) => {
     builder
       // Handle fetchProducts
@@ -84,7 +87,8 @@ const productSlice = createSlice({
       .addCase(searchProduct.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
-      });
+      })
+      .addCase(revertAll, () => initialState);
   },
 });
 

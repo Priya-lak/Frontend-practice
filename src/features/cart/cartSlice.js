@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { instance } from "../../axiosInstance/axiosInstance";
+import { revertAll } from "../actions";
 
 // Async thunk for fetching cart data
 export const fetchCartData = createAsyncThunk(
@@ -22,15 +23,17 @@ export const addToCart = createAsyncThunk(
   }
 );
 
+const initialState = {
+  items: [],
+  totalQuantity: 0,
+  totalAmount: 0,
+  loading: false,
+  error: null,
+};
+
 const cartSlice = createSlice({
   name: "cart",
-  initialState: {
-    items: [],
-    totalQuantity: 0,
-    totalAmount: 0,
-    loading: false,
-    error: null,
-  },
+  initialState: initialState,
   reducers: {
     clearCart: (state) => {
       state.items = [];
@@ -49,6 +52,7 @@ const cartSlice = createSlice({
       const item = state.items.find((item) => item.id === productId);
       if (item) {
         item.quantity = quantity;
+        item.total = quantity * item.price;
         // Recalculate totals
         state.totalQuantity = state.items.reduce(
           (total, item) => total + item.quantity,
@@ -60,6 +64,7 @@ const cartSlice = createSlice({
         );
       }
     },
+    revertAll: () => initialState,
   },
   extraReducers: (builder) => {
     builder
@@ -103,7 +108,8 @@ const cartSlice = createSlice({
       .addCase(addToCart.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
-      });
+      })
+      .addCase(revertAll, () => initialState);
   },
 });
 

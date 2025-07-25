@@ -17,7 +17,8 @@ import {
 import Cookies from "js-cookie";
 import { Adb as AdbIcon, Menu as MenuIcon } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
-import { selectIsLoggedIn, logOut } from "../../features/session/sessionSlice";
+import { selectIsLoggedIn } from "../../features/session/sessionSlice";
+import { revertAll } from "../../features/actions";
 
 export default function Header() {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -77,7 +78,7 @@ export default function Header() {
     if (item.action === "logout") {
       Cookies.remove("user");
       Cookies.remove("isLoggedIn");
-      dispatch(logOut());
+      dispatch(revertAll());
       setSnackBar({
         open: true,
         message: "You have been successfully logged out!",
