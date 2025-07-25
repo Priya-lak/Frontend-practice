@@ -177,7 +177,12 @@ export default function Products() {
                 >
                   View Details
                 </Button>
-                <AddToCart productId={product.id} quantity={1} size="small" />
+                <AddToCart
+                  productId={product.id}
+                  quantity={1}
+                  size="small"
+                  update={false}
+                />
               </CardActions>
             </Card>
           </Grid>
